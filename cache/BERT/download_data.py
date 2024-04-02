@@ -1,6 +1,7 @@
 
 from tqdm.auto import tqdm
 from datasets import load_dataset
+import re
 
 dataset = load_dataset('sradc/chunked-wikipedia20220301en-bookcorpusopen',cache_dir='./datasets/',split="train")
 
