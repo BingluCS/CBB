@@ -1,4 +1,3 @@
-import sys
 from d2l import torch as d2l
 from tqdm.auto import tqdm
 import h5py
@@ -6,6 +5,8 @@ import torch
 import json
 from collections import deque
 import numpy as np
+import argparse
+
 
 BB = '/home/ubutnu/hardDisk/BB/wiki_book/'
 PFS = '/home/ubutnu/hardDisk/DeepLearning/wiki_book/'
@@ -65,13 +66,29 @@ def train( train_loader, learning_rate, num_steps,bb_size,data_size):
                 break
     print(f'miss num: {miss_num}, hit num :{hit_num}, flush num: {flush_num}')
     print(f'cache git rate: {hit_num/(hit_num+miss_num)}')
-        
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('json_file', type=str, 
+                        help='the file information of datasets')
+    parser.add_argument('mode', type=int, 
+                        help='train mode: 0 is Random, 1 is Pareto principle')
+    parser.add_argument('bb_size', type=int,
+                        help='Burst Buffer size')
+    parser.add_argument('num_steps', type=int,
+                        help='train num steps')
+    args = parser.parse_args()
+    return args
+
 if __name__=="__main__":
-    info = sys.argv[1]
-    with open(info, 'r') as f:
+    args = main()
+    with open(args.json_file, 'r') as f:
         data_size = json.load(f)
     train_path='wiki_book/'
-    train_dataset=Wiki_book_Dataset(train_path,int(sys.argv[2]))
+    train_dataset=Wiki_book_Dataset(train_path,args.mode)
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=16,num_workers=4,shuffle = True)
-    train(train_loader,learning_rate=0.0001,num_steps=int(sys.argv[4]),bb_size=int(sys.argv[3]), data_size = data_size)
+    train(train_loader,learning_rate=0.0001,num_steps=args.num_steps,bb_size=args.bb_size, data_size = data_size)
+
+
+
 
