@@ -1130,7 +1130,8 @@ RECURSIVE SUBROUTINE med_restart_out ( grid , config_flags )
   ! Model layer
 !   USE module_bc_time_utilities
    USE module_utility
-
+   USE mpi
+   USE iso_c_binding
    IMPLICIT NONE
 
   ! Arguments
@@ -1146,6 +1147,14 @@ RECURSIVE SUBROUTINE med_restart_out ( grid , config_flags )
    INTEGER                                :: myproc
    CHARACTER*80                           :: timestr
    TYPE (grid_config_rec_type)            :: kid_config_flags
+   INTEGER                                :: rank
+   CHARACTER                              :: ffname
+   INTERFACE
+   SUBROUTINE myWrite_file_cache(arg) bind(C, name="Write_file_cache")
+      USE iso_c_binding
+      CHARACTER(KIND=c_char,len=1),INTENT(IN) :: arg
+     END SUBROUTINE myWrite_file_cache
+   END INTERFACE
 
    IF ( wrf_dm_on_monitor() ) THEN
      CALL start_timing
@@ -1155,10 +1164,13 @@ RECURSIVE SUBROUTINE med_restart_out ( grid , config_flags )
 !   rid=grid%id !zhang's doing
 
    ! write out this domains restart file first
-
    CALL domain_clock_get( grid, current_timestr=timestr )
    CALL construct_filename2a ( rstname , config_flags%rst_outname , grid%id , 2 , timestr )
-
+   CALL MPI_COMM_RANK( MPI_COMM_WORLD, rank, ierr )
+   IF(rank == 0) THEN 
+     CALL myWrite_file_cache (TRIM(rstname)//c_null_char)
+   ENDIF
+   CALL MPI_BARRIER(MPI_COMM_WORLD,ierr) 
    WRITE( message , '("med_restart_out: opening ",A," for writing")' ) TRIM ( rstname )
    CALL wrf_debug( 1 , message )
    CALL open_w_dataset ( rid, TRIM(rstname), grid , &
@@ -1194,8 +1206,10 @@ SUBROUTINE med_hist_out ( grid , stream, config_flags )
    USE module_io_domain
    USE module_configure , ONLY : grid_config_rec_type
    USE module_dm, ONLY : intercomm_active
+   USE mpi
 !   USE module_bc_time_utilities
    USE module_utility
+   USE iso_c_binding
 
    IMPLICIT NONE
   ! Arguments
@@ -1207,6 +1221,14 @@ SUBROUTINE med_hist_out ( grid , stream, config_flags )
    CHARACTER*256                          :: fname, n2
    CHARACTER (LEN=256)                    :: message
    INTEGER                                :: ierr
+   INTEGER                                :: rank
+
+   INTERFACE
+   SUBROUTINE myWrite_file_cache(arg) bind(C, name="Write_file_cache")
+    USE iso_c_binding
+    CHARACTER(KIND=c_char,len=1),INTENT(IN) :: arg
+   END SUBROUTINE myWrite_file_cache
+  END INTERFACE
 
    IF ( .NOT. grid%active_this_task ) RETURN
 
@@ -1224,6 +1246,11 @@ SUBROUTINE med_hist_out ( grid , stream, config_flags )
        CALL open_hist_w( grid, config_flags, stream, HISTORY_ALARM, &
                          config_flags%history_outname, grid%oid,    &
                          output_history, fname, n2, ierr )
+       CALL MPI_COMM_RANK( MPI_COMM_WORLD, rank, ierr )
+       IF(rank == 0) THEN 
+         CALL myWrite_file_cache (TRIM(fname)//c_null_char)
+       ENDIF
+       CALL MPI_BARRIER(MPI_COMM_WORLD,ierr) 
        CALL output_history ( grid%oid, grid , config_flags , ierr )
 
 ! registry-generated selections and calls top open_hist_w for aux streams
@@ -1378,7 +1405,8 @@ SUBROUTINE med_latbound_in ( grid , config_flags )
   ! Model layer
 !   USE module_bc_time_utilities
    USE module_utility
-
+   USE mpi
+   USE iso_c_binding
    IMPLICIT NONE
 
 #include "wrf_status_codes.h"
@@ -1398,7 +1426,14 @@ SUBROUTINE med_latbound_in ( grid , config_flags )
    Type (WRFU_TimeInterval )              :: stepTime
 integer myproc,i,j,k
    CHARACTER(LEN=80)                      :: timestr
-
+   INTEGER                                :: rank
+   
+   INTERFACE
+     SUBROUTINE myRead_file_cache(arg) bind(C, name="Read_file_cache")
+      USE iso_c_binding
+      CHARACTER(KIND=c_char,len=1),INTENT(IN) :: arg
+     END SUBROUTINE myRead_file_cache
+   END INTERFACE
 #include "wrf_io_flags.h"
 
    CALL wrf_debug ( 200 , 'in med_latbound_in' )
@@ -1459,6 +1494,11 @@ integer myproc,i,j,k
           END IF
           WRITE(message,*)'Opening: ',TRIM(bdyname)
           CALL wrf_debug(100,TRIM(message))
+          CALL MPI_COMM_RANK( MPI_COMM_WORLD, rank, ierr )
+          IF(rank == 0) THEN 
+            CALL myRead_file_cache ( TRIM(bdyname)//c_null_char )
+          ENDIF
+          CALL MPI_BARRIER(MPI_COMM_WORLD,ierr) 
           CALL open_r_dataset ( grid%lbc_fid, TRIM(bdyname) , grid , config_flags , "DATASET=BOUNDARY", ierr )
           IF ( ierr .NE. 0 ) THEN
             WRITE( message, * ) 'med_latbound_in: error opening ',TRIM(bdyname), ' for reading. IERR = ',ierr

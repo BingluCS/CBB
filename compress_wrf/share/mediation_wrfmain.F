@@ -28,7 +28,8 @@ use module_io
    USE module_configure
    USE module_bc_time_utilities
    USE module_utility
-
+   USE mpi
+   USE iso_c_binding
    IMPLICIT NONE
 
   ! Interface 
@@ -40,11 +41,19 @@ use module_io
      END SUBROUTINE start_domain
    END INTERFACE
 
+   INTERFACE
+     SUBROUTINE myRead_file_cache(arg) bind(C, name="Read_file_cache")
+       USE iso_c_binding
+       CHARACTER(KIND=c_char,len=1),INTENT(IN) :: arg
+     END SUBROUTINE myRead_file_cache
+   END INTERFACE
+
   ! Arguments
    TYPE(domain)                               :: grid
    TYPE (grid_config_rec_type) , INTENT(IN)   :: config_flags
   ! Local
    INTEGER                :: fid , ierr , myproc
+   INTEGER                                :: rank
    CHARACTER (LEN=256)    :: inpname , rstname, timestr
    CHARACTER (LEN=80)     :: message
    LOGICAL                :: restart
@@ -66,7 +75,11 @@ use module_io
 ! typically <date> will not be part of input_inname but allow for it
         CALL domain_clock_get( grid, current_timestr=timestr )
         CALL construct_filename2a ( inpname , config_flags%input_inname , grid%id , 2 , timestr )
-
+        CALL MPI_COMM_RANK( MPI_COMM_WORLD, rank, ierr )
+        IF(rank == 0) THEN 
+          CALL myRead_file_cache ( TRIM(inpname)//c_null_char )
+        ENDIF
+        CALL MPI_BARRIER(MPI_COMM_WORLD,ierr)
         CALL open_r_dataset ( fid, TRIM(inpname) , grid , config_flags , "DATASET=INPUT", ierr )
         IF ( ierr .NE. 0 ) THEN
           WRITE( wrf_err_message , * ) 'program wrf: error opening ',TRIM(inpname),' for reading ierr=',ierr
