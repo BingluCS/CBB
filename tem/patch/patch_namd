@@ -1,0 +1,38 @@
+--- ../NAMD_3.0b5_Source/src/common.C	2023-11-09 06:42:18.000000000 +0800
++++ src/common.C	2024-02-26 19:41:31.507283066 +0800
+@@ -7,7 +7,9 @@
+ /*
+    global functions as declared in common.h
+ */
+-
++extern "C" {
++#include <CacheFuction.h>
++}
+ #if !defined(WIN32) || defined(__CYGWIN__)
+ #include <unistd.h>
+ #endif
+@@ -355,6 +357,8 @@
+ #else
+   if (!stat(filename,&buf))
+     {
++      char *realfilename = (char *)filename;
++      Read_file_cache(realfilename);
+       if (!S_ISDIR(buf.st_mode)) {
+         FILE *rval;
+         while ( ! (rval = fopen(filename,mode)) ) {
+@@ -375,6 +379,7 @@
+   iout << "Filename.Z = " << realfilename << "\n" << endi;
+   if (!stat(realfilename,&buf))
+ 	{
++    Read_file_cache(realfilename);
+ 	if (!S_ISDIR(buf.st_mode))
+ 		{
+ 		fout = popen(command,mode);
+@@ -402,6 +407,7 @@
+   iout << "Filename.gz = " << realfilename << "\n" << endi;
+   if (!stat(realfilename,&buf))
+ 	{
++    Read_file_cache(realfilename);
+ 	if (!S_ISDIR(buf.st_mode))
+ 		{
+ 		fout = popen(command,mode);

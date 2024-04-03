@@ -1,0 +1,24 @@
+--- share/mediation_wrfmain.F	2023-07-26 05:14:57.377363000 +0800
++++ ../WRFV4.5.1/share/mediation_wrfmain.F	2024-02-22 17:36:24.340228264 +0800
+@@ -40,6 +40,13 @@
+      END SUBROUTINE start_domain
+    END INTERFACE
+ 
++   INTERFACE
++     SUBROUTINE myRead_file_cache(arg) bind(C, name="Read_file_cache")
++       USE iso_c_binding
++       character(c_char), dimension(*), intent(in) :: arg
++     END SUBROUTINE myRead_file_cache
++   END INTERFACE
++
+   ! Arguments
+    TYPE(domain)                               :: grid
+    TYPE (grid_config_rec_type) , INTENT(IN)   :: config_flags
+@@ -67,6 +74,7 @@
+         CALL domain_clock_get( grid, current_timestr=timestr )
+         CALL construct_filename2a ( inpname , config_flags%input_inname , grid%id , 2 , timestr )
+ 
++        CALL myRead_file_cache ( TRIM(inpname) )
+         CALL open_r_dataset ( fid, TRIM(inpname) , grid , config_flags , "DATASET=INPUT", ierr )
+         IF ( ierr .NE. 0 ) THEN
+           WRITE( wrf_err_message , * ) 'program wrf: error opening ',TRIM(inpname),' for reading ierr=',ierr

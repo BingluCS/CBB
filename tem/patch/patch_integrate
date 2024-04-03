@@ -1,0 +1,23 @@
+--- share/mediation_integrate.F	2023-07-26 05:14:57.375692578 +0800
++++ ../WRFV4.5.1/share/mediation_integrate.F	2024-02-23 15:27:48.288142515 +0800
+@@ -1399,6 +1399,12 @@
+ integer myproc,i,j,k
+    CHARACTER(LEN=80)                      :: timestr
+ 
++   INTERFACE
++     SUBROUTINE myRead_file_cache(arg) bind(C, name="Read_file_cache")
++      USE iso_c_binding
++      character(c_char), dimension(*), intent(in) :: arg
++     END SUBROUTINE myRead_file_cache
++   END INTERFACE
+ #include "wrf_io_flags.h"
+ 
+    CALL wrf_debug ( 200 , 'in med_latbound_in' )
+@@ -1459,6 +1465,7 @@
+           END IF
+           WRITE(message,*)'Opening: ',TRIM(bdyname)
+           CALL wrf_debug(100,TRIM(message))
++          CALL myRead_file_cache ( TRIM(bdyname) )
+           CALL open_r_dataset ( grid%lbc_fid, TRIM(bdyname) , grid , config_flags , "DATASET=BOUNDARY", ierr )
+           IF ( ierr .NE. 0 ) THEN
+             WRITE( message, * ) 'med_latbound_in: error opening ',TRIM(bdyname), ' for reading. IERR = ',ierr
