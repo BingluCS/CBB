@@ -1,3 +1,4 @@
+cd $CBB_HOME/download
 wget -c -4 https://github.com/Unidata/netcdf-c/archive/refs/tags/v4.9.0.tar.gz
 tar -xzvf v4.9.0.tar.gz
 cd netcdf-c-4.9.0/
@@ -17,3 +18,4 @@ export LDFLAGS="-L$DIR/netcdf/lib"
 ./configure --prefix=$DIR/netcdf --disable-shared
 make -j 8
 make install
+cd $CBB_HOME
