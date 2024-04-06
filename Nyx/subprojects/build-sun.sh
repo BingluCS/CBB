@@ -1,6 +1,8 @@
 #!/bin/bash
-set -e
-git clone https://github.com/LLNL/sundials
+#git clone https://github.com/LLNL/sundials
+wget https://github.com/LLNL/sundials/archive/refs/tags/v6.7.0.tar.gz
+tar xv v6.7.0.tar.gz
+mv sundials-6.7.0/ sundials
 cd sundials
 mkdir builddir instdir
 INSTALL_PREFIX=$(pwd)/instdir

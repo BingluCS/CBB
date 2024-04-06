@@ -4,6 +4,7 @@ tar -xzvf v4.9.0.tar.gz
 cd netcdf-c-4.9.0/
 export CPPFLAGS="-I$DIR/hdf5/include -I$DIR/grib2/include"
 export LDFLAGS="-L$DIR/hdf5/lib -L$DIR/grib2/lib"
+export CC=mpicc
 ./configure --prefix=$DIR/netcdf --disable-dap
 make -j 8
 make install

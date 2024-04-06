@@ -1,4 +1,4 @@
-AMREX_HOME  = ${AMRIC_HOME}/amrex
+AMREX_HOME  = ${CBB_HOME}/amrex
 PICSAR_HOME ?= ../picsar
 OPENBC_HOME ?= ../openbc_poisson
 
@@ -20,7 +20,7 @@ COMP = gcc
 #COMP = pgi
 
 USE_HDF5=TRUE
-HDF5_HOME=${AMRIC_H5_HOME}
+HDF5_HOME=${HDF5}
 
 #USE_HDF5_SZ3 = TRUE
 #SZ3_HOME = /opt/orisz3/install

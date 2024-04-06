@@ -1,15 +1,5 @@
-# echo "# start of WRF" >> ~/.bashrc
-# echo export DIR=/home/ubutnu/hardDisk/CBB/Libs   >> ~/.bashrc
-# echo export JASPERLIB=$DIR/grib2/lib             >> ~/.bashrc
-# echo export JASPERINC=$DIR/grib2/include         >> ~/.bashrc
-# echo export LDFLAGS=-L$DIR/grib2/lib             >> ~/.bashrc
-# echo export CPPFLAGS=-I$DIR/grib2/include        >> ~/.bashrc
-# echo export PATH=$DIR/netcdf/bin:$PATH           >> ~/.bashrc
-# echo export PATH=$DIR/mpich/bin:$PATH            >> ~/.bashrc
-# echo export NETCDF=$DIR/netcdf                   >> ~/.bashrc
-# echo export HDF5=$DIR/hdf5                       >> ~/.bashrc
-# echo export LD_LIBRARY_PATH=$DIR/netcdf/lib:$LD_LIBRARY_PATH >> ~/.bashrc
 echo export CBB_HOME=$(pwd) >> ~/.bashrc
+export CBB_HOME=$(pwd)
 export DIR=$CBB_HOME/Libs  
 export DIR=/home/ubutnu/hardDisk/CBB/Libs   
 export JASPERLIB=$DIR/grib2/lib
@@ -21,6 +11,8 @@ export PATH=$DIR/mpich/bin:$PATH
 export NETCDF=$DIR/netcdf
 export HDF5=$DIR/hdf5
 export LD_LIBRARY_PATH=$DIR/netcdf/lib:$LD_LIBRARY_PATH
+mkdir download
+mkdir Libs
 
 cd $CBB_HOME/download
 wget -c -4 https://github.com/madler/zlib/archive/refs/tags/v1.2.12.tar.gz
