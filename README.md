@@ -66,7 +66,7 @@ cd DME
 . init.sh
 ```
 ### 2.2 Run WRF
-##### Download the no-compress dateset  
+#### Download the no-compress dateset  
 ```
 wget https://www2.mmm.ucar.edu/wrf/src/non_compressed_12km.tar.gz
 tar xvf non_compressed_12km.tar.gz
@@ -76,16 +76,21 @@ cp wrfbdy_d01 $CBB_HOME/run/PFS/nocompress
 cp wrfinput_d01 $CBB_HOME/run/PFS/cbb
 cp wrfbdy_d01 $CBB_HOME/run/PFS/cbb
 ```
-##### Download the compress dateset  
+#### Download the compress dateset  
 ```
 wget https://www2.mmm.ucar.edu/wrf/src/conus12km.tar.gz # The file is about 1.8GB including the output file
 tar xvf conus12km.tar.gz
 cp wrfinput_d01 $CBB_HOME/run/PFS/compress
 cp wrfbdy_d01 $CBB_HOME/run/PFS/compress
 ```
-##### run wrf with software no-compress format
 
-##### run wrf with software compress format
+#### run wrf with software no-compress format
 
-##### run wrf with cbb
-note: the cbb is based on Real Computational Storage Drive(CSD). If you can't use the CSD as BB, you only use metadata simulation. So, next is r 
+#### run wrf with software compress format
+
+#### run wrf with cbb
+##### Simulate the CBB
+note: CBB is based on Real Computational Storage Drive(CSD). If you can achieve the CSD to BB, you don't use scripts to simulate the compression ratio of files. 
+```
+
+```
