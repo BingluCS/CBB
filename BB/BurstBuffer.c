@@ -13,38 +13,13 @@ struct HPCsystem
     /* data */
 };
 struct HPCsystem config = {
-    .PFS = "/root/PFS/nocompress/",
-    .BB0 = "/root/HPC/BB/nocompress/",
-    .BB1 = "/root/HPC/BB/nocompress/",
-    .json_file = "/root/HPC/Cache/file_cache_nocompress.json",
+    .PFS = "/home/ubutnu/hardDisk/PFS/nocompress/",
+    .BB0 = "/home/ubutnu/hardDisk/BB/nocompress/",
+    .BB1 = "/home/ubutnu/hardDisk/BB/nocompress/",
+    .json_file = "/home/ubutnu/hardDisk/CBB/BB/file_cache_nocompress.json",
     .threshold = 1024*1024*1024*50.0
 };
 
-int direct_write(const char *filename) {
-    char command[1024];
-
-    struct timeval start;
-    struct timeval end;
-    gettimeofday(&start,NULL);
-    char *PFS = config.PFS;
-    char *BurstBuffer = config.BB1;
-
-    sprintf(command, "scp -r %sbk_%s ubutnu@192.168.104.146:%s\n", BurstBuffer, filename, PFS);
-
-
-    int status = system(command);
-    if (status == 0) {
-        fprintf(stderr,"Demote file(%s) successfully.\n",filename);
-    } else {
-        fprintf(stderr,"Error Command: %s\n",command);
-        return 0;
-    }
-    gettimeofday(&end,NULL);
-    float time_use=(end.tv_sec-start.tv_sec)*1000000+(end.tv_usec-start.tv_usec);//微秒
-    fprintf(stderr,"Demoting time_use is %.10f us\n",time_use);
-    // Close file pointer
-    return 0;
-}
 int Prefetch(const char *filename) {
     char file_PFS[200];
     char file_BB[200];
@@ -190,7 +165,6 @@ int Read_file_cache(const char *filepath) {
 
 
 int Write_file_cache(const char *filepath) {
-    int dw = 1;
     char *json_file = config.json_file;
     char *ret;
     const char *filename; 
@@ -200,10 +174,6 @@ int Write_file_cache(const char *filepath) {
         filename = ret+1;
     else filename = filepath;
 
-    if(dw == 0) {
-    	direct_write(filename);
-	return 0;
-    }
     double threshold= config.threshold;
 
     FILE *F = fopen(json_file, "r");
