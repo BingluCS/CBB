@@ -13,10 +13,10 @@ struct HPCsystem
     /* data */
 };
 struct HPCsystem config = {
-	.PFS = "/home/ubutnu/hardDisk/PFS/nocompress/",
-	.BB0 = "/home/ubutnu/hardDisk/BB/nocompress/",
-	.BB1 = "/home/ubutnu/hardDisk/BB/nocompress/",
-	.json_file = "/home/ubutnu/hardDisk/CBB/BB/file_cache_nocompress.json",
+	.PFS = "/home/ubutnu/hardDisk/val/CBB/run/PFS/nocompress/",
+	.BB0 = "/home/ubutnu/hardDisk/val/CBB/run/BB/nocompress/",
+	.BB1 = "/home/ubutnu/hardDisk/val/CBB/run/BB/nocompress/",
+	.json_file = "/home/ubutnu/hardDisk/val/CBB/DME/file_cache_nocompress.json",
 	.threshold = 1024*1024*1024*50.0,
 
 };

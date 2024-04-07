@@ -43,11 +43,10 @@ with open('BBconfig', 'r') as file:
                 sys.exit()
         else :
             print("Config file format error!")
-            print("-------------------------")
-            print("PFS = -------------------")
-            print("BB0 = -------------------")
-            print("BB1 = -------------------")
-            print("json_file = -------------")
+            print("PFS = -------------------,")
+            print("BB0 = -------------------,")
+            print("BB1 = -------------------,")
+            print("json_file = -------------,")
             print("threshold = -------------")
             sys.exit()
 for key in parameters:
