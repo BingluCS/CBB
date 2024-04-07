@@ -1,5 +1,5 @@
-# echo export CBB_HOME=$(pwd) >> ~/.bashrc
-# export CBB_HOME=$(pwd)
+echo export CBB_HOME=$(pwd) >> ~/.bashrc
+export CBB_HOME=$(pwd)
 export DIR=$CBB_HOME/Libs  
 export DIR=/home/ubutnu/hardDisk/CBB/Libs   
 export JASPERLIB=$DIR/grib2/lib
