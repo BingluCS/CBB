@@ -9,6 +9,7 @@ file_name = sys.argv[1]
 
 total_pre_time = 0.0
 total_real_write_time = 0.0
+total = 0.0
 
 iAvg = 0
 outList = np.zeros(400)
@@ -20,8 +21,7 @@ for line in data:
     if line.startswith("Write h5plotfile time ="):
         iAvg += 1
         number = float(line.split("Write h5plotfile time =")[1].strip().split(" ")[0])  # Extract the number and remove "seconds"
-        print(f"original AMReX Total time = {number} seconds")
-
+        total += number
 for line in data:
     if line.startswith("real write time ="):
         iAvg += 1
@@ -33,5 +33,6 @@ for line in data:
         number = float(line.split("pre time =")[1].strip().split(" ")[0])  # Extract the number and remove "seconds"
         total_pre_time += number
 
+print(f"original AMReX Total time = {total} seconds")
 print(f"original AMReX Preprocess time = {total_pre_time} seconds")
 print(f"original AMReX Writing+Compression time = {total_real_write_time} seconds")
