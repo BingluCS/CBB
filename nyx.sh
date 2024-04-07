@@ -1,7 +1,7 @@
 cd $CBB_HOME
 
-#cd Nyx/subprojects
-#. build-sun.sh
+cd Nyx/subprojects
+. build-sun.sh
 
 cd $CBB_HOME/Nyx/Exec/AMR-density
 
