@@ -1,5 +1,6 @@
 import re
 import os
+import sys
 parameters ={
     "PFS": 0,
     "BB0": 0,
@@ -21,40 +22,31 @@ with open('BBconfig', 'r') as file:
                 if parameters[key] == 0:
                     parameters[key] = 1
                 else :
-                    print("Duplicate parameter setting!")
+                    print(f"({key}) Duplicate parameter setting!")
+                    sys.exit()
+                    
                 if(key=='threshold'):
                     value = re.search(pattern2, matches.group(2))
                     if(eval(value.group(1)) <= 0):
                         print("The threshold should be greater than 0!")
+                        sys.exit()
                     config += f'.{key} = {value.group(1)}\n'
                 else : 
                     value = re.search(pattern1, matches.group(2))
                     if(not (os.path.exists(value.group(1)) or os.path.isdir(value.group(1)))):
-                        print("File or directory does not exist")
+                        print(f"({key}) File or directory does not exist!")
+                        sys.exit()
                     config += f'.{key} = "{value.group(1)}"\n'
             else :
                 print("Config parameter error!")
-            # if(value):
-            #     match
-
+                sys.exit()
         else :
-            print("enter right format")
+            print("Config file format error!")
+            print("-------------------------")
+            print("PFS = -------------------")
+            print("BB0 = -------------------")
+            print("BB1 = -------------------")
+            print("json_file = -------------")
+            print("threshold = -------------")
+            sys.exit()
 print(config)
-# data1 = '''.PFS ="/root/PFS/nocompress/",
-# .BB0 = "/root/HPC/BB/nocompress/",
-# .BB1 = "/root/HPC/BB/nocompress/",
-# .json_file = "/root/HPC/Cache/file_cache_nocompress.json",
-# .threshold = 1024*1024*1024*50.0'''
-
-# # 定义正则表达式模式
-# pattern = r'(\w+)\s*=\s*"([^"]+)"'
-
-# # 使用正则表达式找到匹配项
-# matches = re.findall(pattern, data)
-
-# # 将结果存储为字典
-# result = {key: value for key, value in matches}
-
-# # 打印结果
-# print(data[0])
-
