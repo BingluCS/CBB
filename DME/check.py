@@ -35,7 +35,7 @@ with open('BBconfig', 'r') as file:
                 else : 
                     value = re.search(pattern1, matches.group(2))
                     if(not (os.path.exists(value.group(1)) or os.path.isdir(value.group(1)))):
-                        print(f"({key}) File or directory does not exist!")
+                        print(f"({value.group(1)}) File or directory does not exist!")
                         sys.exit()
                     config += f'\t.{key} = "{value.group(1)}",\n'
             else :
