@@ -1,7 +1,6 @@
 echo export CBB_HOME=$(pwd) >> ~/.bashrc
 export CBB_HOME=$(pwd)
 export DIR=$CBB_HOME/Libs  
-export DIR=/home/ubutnu/hardDisk/CBB/Libs   
 export JASPERLIB=$DIR/grib2/lib
 export JASPERINC=$DIR/grib2/include
 export LDFLAGS=-L$DIR/grib2/lib
