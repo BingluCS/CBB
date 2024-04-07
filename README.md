@@ -1,45 +1,49 @@
 # CBB
 
-## Install
+## 1. Install
 
-### 1. Install software libraries requirements (1 mins)
+### 1.1 Set environment
 
 ```
 . environment.sh
 ```
 
-### 2. Load or install MPICH
+### 1.2 Install dependent libraries and packages
+```
+. requirements.sh
+```
+
+### 1.3 Load or install MPICH
 
 ```
 . mpi.sh
-. mpi_env.sh
 ```
 
-### 3. Download and install the HDF5 library 
+### 1.4 Download and install the HDF5 library 
 
 ```
 . hdf5.sh
 ```
 
-### 4. Download and install the netcdf
+### 1.5 Download and install the netcdf
 
 ```
 . netcdf.sh
 ```
 
-### 5. Install the WRF with compress and no-compress mode
+### 1.6 Install the WRF with compress and no-compress mode
 
 ```
 . wrf.sh
 ```
 
-### 6. Install the Nyx with compress and no-compress mode
+### 1.7 Install the Nyx with compress and no-compress mode
 
 ```
 . nyx.sh
 ```
 
-### 7. Install the WarpX with compress and no-compress mode
+### 1.8 Install the WarpX with compress and no-compress mode
 
 ```
 . warpx.sh
