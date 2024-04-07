@@ -4,4 +4,5 @@ mkdir build
 cd build
 cmake ..
 make -j 8
+cd $CBB_HOME/BB
 # make install
