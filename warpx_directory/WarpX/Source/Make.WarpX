@@ -147,6 +147,7 @@ ifeq ($(USE_OPENBC_POISSON),TRUE)
   DEFINES += -DFFT_FFTW -DMPIPARALLEL -DUSE_OPENBC_POISSON
 endif
 
+libraries += -lbb
 ifeq ($(USE_OPENPMD), TRUE)
    # try pkg-config query
    ifeq (0, $(shell pkg-config "openPMD >= 0.15.1"; echo $$?))
