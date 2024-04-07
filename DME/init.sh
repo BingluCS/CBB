@@ -7,7 +7,7 @@ rm $CBB_HOME/run/BB/compress/plt* -rf
 rm $CBB_HOME/run/BB/sim_bb/wrf* -rf
 rm $CBB_HOME/run/BB/sim_bb/chk* -rf
 rm $CBB_HOME/run/BB/sim_bb/plt* -rf
-# rm $CBB_HOME/run/BB/cbb/*old* -rf
+rm $CBB_HOME/run/BB/cbb/*old* -rf
 #rm ~/CSD/BBcsd/*wrf* -rf
 # rm ~/PFS/test/wrf* -rf
 #cp -r $CBB_HOME/run/BB/bk_cbb_* $CBB_HOME/run/BB/cbb/

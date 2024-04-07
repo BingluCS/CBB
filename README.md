@@ -110,16 +110,28 @@ cp comname namelist.input
 time mpirun -np 16 ./wrf.exe
 ```
 
-#### run wrf with cbb
-##### Simulate the CBB
+##### Simulate the CBB files
 note: CBB is based on Real Computational Storage Drive(CSD). If you can apply CSD to BB, you don't use scripts to simulate the CSD files. 
-please move all files fo wrf (both input and output) to the directory ($CBB_HOME/tem/) 
+please move all files fo wrf (both input and output) to the directory ($CBB_HOME/tmp/) 
 ```
 cd  $CBB_HOME
 mkdir sim_files
 cd  $CBB_HOME/sim_bb
 git clone https://github.com/taovcu/DPZipSim.git
 mv DPZipSim/dpzip_sim.py . 
-python3 sim_file.py $CBB_HOME/tem/
+python3 sim_file.py $CBB_HOME/tmp/
 ```
 Although the metadata json file is created in advance, you can still create metadata json files as needed
+
+#### run wrf with cbb
+```
+cd $CBB_HOME/DME
+. testBB-cbb.sh
+. init.sh #init the BB metadata
+. initcbb.sh
+. BB.sh
+
+cd $CBB_HOME/nocompress_wrf/test/em_real/
+cp comname namelist.input
+time mpirun -np 16 ./wrf.exe
+```
