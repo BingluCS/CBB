@@ -1,6 +1,6 @@
 #!/bin/bash
 #git clone https://github.com/LLNL/sundials
-wget -c 4 https://github.com/LLNL/sundials/archive/refs/tags/v6.7.0.tar.gz
+wget -c -4 https://github.com/LLNL/sundials/archive/refs/tags/v6.7.0.tar.gz
 tar xvf v6.7.0.tar.gz
 mv sundials-6.7.0/ sundials
 cd sundials
