@@ -26,31 +26,31 @@ cd DME
 . BB.sh
 ```
 
-### 1.4 Download and install the HDF5 library 
+### 1.5 Download and install the HDF5 library 
 
 ```
 . hdf5.sh
 ```
 
-### 1.5 Download and install the netcdf
+### 1.6 Download and install the netcdf
 
 ```
 . netcdf.sh
 ```
 
-### 1.6 Install the WRF with compress and no-compress mode
+### 1.7 Install the WRF with compress and no-compress mode
 
 ```
 . wrf.sh
 ```
 
-### 1.7 Install the Nyx with compress and no-compress mode
+### 1.8 Install the Nyx with compress and no-compress mode
 
 ```
 . nyx.sh
 ```
 
-### 1.8 Install the WarpX with compress and no-compress mode
+### 1.9 Install the WarpX with compress and no-compress mode
 
 ```
 . warpx.sh
