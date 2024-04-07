@@ -5,3 +5,4 @@ cd build
 cmake ..
 make -j 8
 # make install
+gcc -shared -fPIC BurstBuffer.c cJSON/cJSON.c -o libbb.so

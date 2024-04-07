@@ -1,6 +1,7 @@
 import re
 import os
 import sys
+import subprocess
 parameters ={
     "PFS": 0,
     "BB0": 0,
@@ -49,4 +50,8 @@ with open('BBconfig', 'r') as file:
             print("json_file = -------------")
             print("threshold = -------------")
             sys.exit()
-print(config)
+
+command = f"(head -n 15 CacheFunction.c && cat {config} && tail -n +21 CacheFunction.c) > tmp \
+&& mv CacheFunction.c oldcachefunction.c && mv tmp CacheFunction.c"
+# result = subprocess.run(["ls", "-l"], stdout=subprocess.PIPE)
+print(command)

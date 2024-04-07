@@ -1,16 +1,4 @@
-echo export CBB_HOME=$(pwd) >> ~/.bashrc
-export CBB_HOME=$(pwd)
-export DIR=$CBB_HOME/Libs  
-export DIR=/home/ubutnu/hardDisk/CBB/Libs   
-export JASPERLIB=$DIR/grib2/lib
-export JASPERINC=$DIR/grib2/include
-export LDFLAGS=-L$DIR/grib2/lib
-export CPPFLAGS=-I$DIR/grib2/include
-export PATH=$DIR/netcdf/bin:$PATH
-export PATH=$DIR/mpich/bin:$PATH 
-export NETCDF=$DIR/netcdf
-export HDF5=$DIR/hdf5
-export LD_LIBRARY_PATH=$DIR/netcdf/lib:$LD_LIBRARY_PATH
+
 mkdir download
 mkdir Libs
 
