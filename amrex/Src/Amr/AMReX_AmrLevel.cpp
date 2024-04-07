@@ -368,7 +368,7 @@ AmrLevel::writePlotFile (const std::string& dir,
         auto dPlotFileTime0 = amrex::second();
         WriteMultiLevelPlotfileHDF5SingleDset(
     //   WriteMultiLevelPlotfileHDF5SingleDset(
-                                  mt_final,
+                                  dir_final,
                                   parent->finestLevel()+1,
                                   amrex::GetVecOfConstPtrs(multiMf),
                                   varnames,

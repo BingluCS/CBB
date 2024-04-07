@@ -7,6 +7,12 @@
  *
  * License: BSD-3-Clause-LBNL
  */
+
+extern "C" {
+
+#include <CacheFuction.h>
+}
+
 #include "BoundaryConditions/PML.H"
 #if (defined WARPX_DIM_RZ) && (defined WARPX_USE_PSATD)
 #    include "BoundaryConditions/PML_RZ.H"
@@ -97,7 +103,13 @@ WarpX::InitFromCheckpoint ()
 
     amrex::Print()<< Utils::TextMsg::Info(
         "restart from checkpoint " + restart_chkfile);
-
+    
+    int rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    if(rank == 0)
+        Read_file_cache(restart_chkfile.c_str());
+    MPI_Barrier(MPI_COMM_WORLD);
+    
     // Header
     {
         std::string File(restart_chkfile + "/WarpXHeader");
