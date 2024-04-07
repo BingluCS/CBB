@@ -1,5 +1,7 @@
 download
 Libs
-BB/cJSON
+DME/cJSON
 nocompress_wrf
 compress_wrf
+Nyx
+warpx_directory

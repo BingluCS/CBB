@@ -21,7 +21,7 @@
 
 ### 1.4 Initial the BB config
 ```
-cd BB
+cd DME
 . cJson.sh
 . BB.sh
 ```
