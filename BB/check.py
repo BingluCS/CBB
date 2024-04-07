@@ -51,7 +51,8 @@ with open('BBconfig', 'r') as file:
             print("threshold = -------------")
             sys.exit()
 
-command = f"(head -n 15 CacheFunction.c && cat {config} && tail -n +21 CacheFunction.c) > tmp \
-&& mv CacheFunction.c oldcachefunction.c && mv tmp CacheFunction.c"
-# result = subprocess.run(["ls", "-l"], stdout=subprocess.PIPE)
-print(command)
+command = f"(head -n 15 BurstBuffer.c && echo '{config}' && tail -n +21 BurstBuffer.c) > tmp \
+&& mv BurstBuffer.c oldBurstBuffer.c "#&& mv tmp BurstBuffer.c
+command = ["echo", config]
+result = subprocess.run(command, stdout=subprocess.PIPE).stdout.strip()
+print(result)
