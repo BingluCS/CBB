@@ -19,6 +19,13 @@
 . mpi.sh
 ```
 
+### 1.4 Initial the BB config
+```
+cd BB
+. cJson.sh
+. BB.sh
+```
+
 ### 1.4 Download and install the HDF5 library 
 
 ```
