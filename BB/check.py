@@ -1,5 +1,5 @@
 import re
-
+import os
 parameters ={
     "PFS": 0,
     "BB0": 0,
@@ -8,7 +8,7 @@ parameters ={
     "threshold": 0
 }
 pattern0 = r'(\w+)\s*=\s*(.+),*'
-pattern1 = r'("[^"]+")'
+pattern1 = r'"([^"]+)"'
 pattern2 = r'(.+)'
 config =""
 with open('BBconfig', 'r') as file:
@@ -26,13 +26,12 @@ with open('BBconfig', 'r') as file:
                     value = re.search(pattern2, matches.group(2))
                     if(eval(value.group(1)) <= 0):
                         print("The threshold should be greater than 0!")
+                    config += f'.{key} = {value.group(1)}\n'
                 else : 
                     value = re.search(pattern1, matches.group(2))
-                    
-
-                if(value):
-
-                    config += f'.{key} = {value.group(1)}\n'
+                    if(not (os.path.exists(value.group(1)) or os.path.isdir(value.group(1)))):
+                        print("File or directory does not exist")
+                    config += f'.{key} = "{value.group(1)}"\n'
             else :
                 print("Config parameter error!")
             # if(value):
@@ -40,7 +39,7 @@ with open('BBconfig', 'r') as file:
 
         else :
             print("enter right format")
-print(parameters,config)
+print(config)
 # data1 = '''.PFS ="/root/PFS/nocompress/",
 # .BB0 = "/root/HPC/BB/nocompress/",
 # .BB1 = "/root/HPC/BB/nocompress/",
