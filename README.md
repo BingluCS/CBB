@@ -62,7 +62,7 @@ cd $CBB_HOME
 ### 2.1 Init Burst Buffer
 ```
 cd DME
-. testBBconfig.sh
+. testBB-nocom.sh
 . init.sh
 ```
 ### 2.2 Run WRF
@@ -86,10 +86,21 @@ cp wrfbdy_d01 $CBB_HOME/run/PFS/compress
 
 #### run wrf with software no-compress format
 ```
-
+cd $CBB_HOME/DME
+. testBB-nocom.sh
+. init.sh #init the BB metadata
+cd $CBB_HOME/nocompress_wrf/test/em_real/
+time mpirun -np 16 ./wrf.exe
 ```
 
 #### run wrf with software compress format
+```
+cd $CBB_HOME/DME
+. testBB-com.sh
+. init.sh #init the BB metadata
+cd $CBB_HOME/nocompress_wrf/test/em_real/
+time mpirun -np 16 ./wrf.exe
+```
 
 #### run wrf with cbb
 ##### Simulate the CBB
