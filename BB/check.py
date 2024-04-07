@@ -31,13 +31,13 @@ with open('BBconfig', 'r') as file:
                     if(eval(value.group(1)) <= 0):
                         print("The threshold should be greater than 0!")
                         sys.exit()
-                    config += f'.{key} = {value.group(1)}\n'
+                    config += f'\t.{key} = {value.group(1)},\n'
                 else : 
                     value = re.search(pattern1, matches.group(2))
                     if(not (os.path.exists(value.group(1)) or os.path.isdir(value.group(1)))):
                         print(f"({key}) File or directory does not exist!")
                         sys.exit()
-                    config += f'.{key} = "{value.group(1)}"\n'
+                    config += f'\t.{key} = "{value.group(1)}",\n'
             else :
                 print("Config parameter error!")
                 sys.exit()
@@ -50,9 +50,10 @@ with open('BBconfig', 'r') as file:
             print("json_file = -------------")
             print("threshold = -------------")
             sys.exit()
-
-command = f"(head -n 15 BurstBuffer.c && echo '{config}' && tail -n +21 BurstBuffer.c) > tmp \
-&& mv BurstBuffer.c oldBurstBuffer.c "#&& mv tmp BurstBuffer.c
-command = ["echo", config]
-result = subprocess.run(command, stdout=subprocess.PIPE).stdout.strip()
-print(result)
+for key in parameters:
+    if parameters[key] == 0:
+        print(f'parameter {key} is not defined')
+        sys.exit()
+command = f"(head -n 15 BurstBuffer.c && echo '{config}' && tail -n +22 BurstBuffer.c) > tmp \
+&& mv BurstBuffer.c oldBurstBuffer.c && mv tmp BurstBuffer.c"
+subprocess.run(command,shell=True)
