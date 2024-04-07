@@ -113,7 +113,10 @@ time mpirun -np 16 ./wrf.exe
 #### run wrf with cbb
 ##### Simulate the CBB
 note: CBB is based on Real Computational Storage Drive(CSD). If you can apply CSD to BB, you don't use scripts to simulate the CSD files. 
+please move all files fo wrf (both input and output) to the directory ($CBB_HOME/tem/) 
 ```
 cd  $CBB_HOME/sim_bb
 git clone https://github.com/taovcu/DPZipSim.git
+mv DPZipSim/dpzip_sim.py . 
+python3 sim_file.py $CBB_HOME/tem/
 ```
