@@ -107,7 +107,7 @@ cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/nocompress_wrf/test/em_real/
 cp nocomname namelist.input
-（time mpirun -np 16 ./wrf.exe） >& $CBB_HOME/out/nocomp-wrf.txt
+（time mpirun -np 8 ./wrf.exe） >& $CBB_HOME/out/nocomp-wrf.txt
 cp rsl.error.0000 $CBB_HOME/out/nocomp-rsl
 ```
 #### Run NYX with no-compress format
@@ -115,14 +115,14 @@ cp rsl.error.0000 $CBB_HOME/out/nocomp-rsl
 cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/Nyx/Exec/AMR-density
-(time mpirun -np 16 ./nocomp input_nocom-nyx) >& $CBB_HOME/out/nocomp-nyx.txt
+(time mpirun -np 8 ./nocomp input_nocom-nyx) >& $CBB_HOME/out/nocomp-nyx.txt
 ```
 #### Run Warpx with no-compress format
 ```
 cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/warpx_directory/WarpX
-(time mpirun -np 16 ./nocomp input_nocom-warpx) >& $CBB_HOME/out/nocomp-warpx.txt
+(time mpirun -np 8 ./nocomp input_nocom-warpx) >& $CBB_HOME/out/nocomp-warpx.txt
 ```
 ### 2.3 run application with software compress format
 #### Initial the BB with software compress format
@@ -138,7 +138,7 @@ cd $CBB_HOME/DME
 . init.sh
 cd $CBB_HOME/compress_wrf/test/em_real/
 cp comname namelist.input
-(time mpirun -np 16 ./wrf.exe) >& $CBB_HOME/out/comp-wrf.txt
+(time mpirun -np 8 ./wrf.exe) >& $CBB_HOME/out/comp-wrf.txt
 cp rsl.error.0000 $CBB_HOME/out/comp-rsl
 ```
 
@@ -148,7 +148,7 @@ cd $CBB_HOME/DME
 . init.sh 
 cd $CBB_HOME/Nyx/Exec/AMR-density
 . base.sh
-(time mpirun -np 16 ./comp input_com-nyx) >& $CBB_HOME/out/comp-nyx.txt
+(time mpirun -np 8 ./comp input_com-nyx) >& $CBB_HOME/out/comp-nyx.txt
 ```
 #### Run Warpx with software compress format
 ```
@@ -156,7 +156,7 @@ cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/warpx_directory/WarpX
 . base.sh
-(time mpirun -np 16 ./comp input_com-warpx) >& $CBB_HOME/out/comp-warpx.txt
+(time mpirun -np 8 ./comp input_com-warpx) >& $CBB_HOME/out/comp-warpx.txt
 ```
 ### 2.4 run application with CBB
 #### Simulate the CBB files
