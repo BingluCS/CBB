@@ -1,6 +1,0 @@
-{
-    "files.associations": {
-        "patch_hdf5amr": "c",
-        "amrex_asyncout.h": "c"
-    }
-}
