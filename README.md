@@ -1,5 +1,5 @@
 # CBB
-
+This projetc is the simulation of the computational Burst Buffer(CBB) based on computational storage drive (CSD).
 ## 1. Install
 
 ### 1.1 Set environment
@@ -118,7 +118,7 @@ cd $CBB_HOME/Nyx/Exec/AMR-density
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
-### 2.2 run application with software compress format
+### 2.3 run application with software compress format
 #### Initial the BB with software compress format
 ```
 cd $CBB_HOME/DME
@@ -139,8 +139,9 @@ python3 dlwrf-com.py $CBB_HOME/compress_wrf/test/em_real/rsl.error.0000
 #### Run NYX with sufficient BB
 ```
 cd $CBB_HOME/DME
-. init.sh #init the BB metadata
+. init.sh 
 cd $CBB_HOME/Nyx/Exec/AMR-density
+. base.sh
 (time mpirun -np 16 ./comp input_com-nyx) >& comp-nyx.txt
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
