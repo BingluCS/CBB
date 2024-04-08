@@ -10,7 +10,7 @@ def wrfget_data(filename):
     if matches:
         for match in matches:
             prefetchTime += float(match)/1000_000
-    print(f"Prefetch time:\t{prefetchTime:.3f} s")
+    print(f"Prefetch time:\t\t{prefetchTime:.3f} s")
 
     pattern_flush = r'Demoting time_use is (\d+\.\d+) us'
     matches = re.findall(pattern_flush, data)
@@ -18,7 +18,7 @@ def wrfget_data(filename):
     if matches:
         for match in matches:
             flushTime += float(match)/1000_000
-    print(f"Flush time:\t{flushTime:.3f} s")
+    print(f"Flush time:\t\t{flushTime:.3f} s")
 
 
     pattern_input = r"Timing for processing wrfinput file \(stream \d+\) for domain\s+\d+:\s+(\d+\.\d+) elapsed seconds"
@@ -29,7 +29,7 @@ def wrfget_data(filename):
     matches = re.findall(pattern_bdy, data)
     bdyTime = float(matches[0])
 
-    print(f"Read time :\t{(bdyTime + inTime - prefetchTime):.3f} s")
+    print(f"Read time :\t\t{(bdyTime + inTime - prefetchTime):.3f} s")
 
     # pattern_restart = r"Timing for Writing restart for domain\s+\d+:\s+(\d+\.\d+) elapsed seconds"
     # matches = re.findall(pattern_restart, data)
@@ -43,7 +43,7 @@ def wrfget_data(filename):
         for match in matches:
             out += float(match)
     sumout = out #+resTime
-    print(f"Write time:\t{(sumout-flushTime):.3f} s")
+    print(f"Write time:\t\t{(sumout-flushTime):.3f} s")
 
 file = sys.argv[1]
 wrfget_data(file)
