@@ -107,7 +107,7 @@ cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/nocompress_wrf/test/em_real/
 cp nocomname namelist.input
-（time mpirun -np 8 ./wrf.exe） >& $CBB_HOME/out/nocomp-wrf.txt
+(time mpirun -np 8 ./wrf.exe) >& $CBB_HOME/out/nocomp-wrf.txt
 cp rsl.error.0000 $CBB_HOME/out/nocomp-rsl
 ```
 #### Run NYX with no-compress format
