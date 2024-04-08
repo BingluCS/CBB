@@ -59,14 +59,7 @@ cd $CBB_HOME
 ```
 
 ## 2. test
-### 2.1 Init Burst Buffer
-```
-cd DME
-. testBB-nocom.sh
-. init.sh
-. BB.sh
-```
-### 2.2 Run WRF
+### 2.1 Download the no-compress dateset  
 #### Download the no-compress dateset  
 ```
 wget https://www2.mmm.ucar.edu/wrf/src/non_compressed_12km.tar.gz
@@ -86,19 +79,39 @@ cp wrfinput_d01 $CBB_HOME/run/PFS/compress
 cp wrfbdy_d01 $CBB_HOME/run/PFS/compress
 ```
 
-#### run wrf with software no-compress format
+### 2.2 run application with no-compress format
+#### Initial the BB 
 ```
 cd $CBB_HOME/DME
 . testBB-nocom.sh
-. init.sh #init the BB metadata
 . BB.sh
+```
+#### run wrf with sufficient BB
+```
+. init.sh #init the BB metadata
 cd $CBB_HOME/nocompress_wrf/test/em_real/
 cp nocomname namelist.input
 time mpirun -np 16 ./wrf.exe
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
-
+#### Run NYX with sufficient BB
+```
+. init.sh #init the BB metadata
+cd $CBB_HOME/Nyx/Exec/AMR-density
+(time mpirun -np 16 ./nocomp input_nocom-nyx) >& nocomp-nyx.txt
+cd $CBB_HOME/scripts
+python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+```
+#### Run Warpx with sufficient BB
+```
+. init.sh #init the BB metadata
+cd $CBB_HOME/Nyx/Exec/AMR-density
+(time mpirun -np 16 ./nocomp input_nocom-nyx) >& nocomp-nyx.txt
+cd $CBB_HOME/scripts
+python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+```
+### 2.2 run application with  software compress format
 #### run wrf with software compress format
 ```
 cd $CBB_HOME/DME
@@ -140,15 +153,4 @@ cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
 
-### 2.3 Run NYX 
-```
-cd $CBB_HOME/DME
-. testBB-nocom.sh
-. init.sh #init the BB metadata
-. BB.sh
-cd $CBB_HOME/Nyx/Exec/AMR-density
-(time mpirun -np 16 ./nocomp input_nocom-nyx) >& nocomp-nyx.txt
-cd $CBB_HOME/scripts
-python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 
-```

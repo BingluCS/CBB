@@ -50,7 +50,7 @@ amr.data_log = run/runlog
 
 #This is how we restart from a checkpoint and write an ascii particle file
 #Leave this commented out in cvs version
-amr.restart = ../../../run/BB/nocompress/plt/chk00005
+amr.restart = ../../../run/BB/nocompress/chk00005
 #particles.particle_output_file = particle_output
 
 gravity.no_sync      = 1
