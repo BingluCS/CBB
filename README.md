@@ -133,7 +133,8 @@ cd $CBB_HOME/DME
 . BB.sh
 
 cd $CBB_HOME/nocompress_wrf/test/em_real/
-cp comname namelist.input
+cp cbbname namelist.input
 time mpirun -np 16 ./wrf.exe
-python3 dlwrf-nocom.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+cd $CBB_HOME/scripts
+python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
