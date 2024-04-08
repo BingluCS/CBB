@@ -1,6 +1,6 @@
  &time_control
- input_inname  	  		             = '../../../run/BB/cbb/wrfinput_d01',
- bdy_inname			                 = '../../../run/BB/cbb/wrfbdy_d01',
+ input_inname  	  		     = '../../../run/BB/cbb/wrfinput_d01',
+ bdy_inname			     = '../../../run/BB/cbb/wrfbdy_d01',
  run_days                            = 0,
  run_hours                           = 1,
  run_minutes                         = 0,
@@ -23,7 +23,7 @@
  frames_per_outfile                  = 1,
  restart                             = .false.,
  history_outname                     = '../../../run/BB/cbb/wrfout_d<domain>_<date>'
- rst_outname 			             = '../../../run/BB/cbb/wrfrst_d<domain>_<date>'
+ rst_outname 			     = '../../../run/BB/cbb/wrfrst_d<domain>_<date>'
  restart_interval                    = 60,
  io_form_history                     = 2,
  io_form_restart                     = 2,

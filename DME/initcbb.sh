@@ -1,4 +1,4 @@
-cp $CBB_HOME/tmp/* $CBB_HOME/run/BB/sim_bb/ -r
+cp $CBB_HOME/sim_files/* $CBB_HOME/run/BB/sim_bb/ -r
 directory="$CBB_HOME/run/BB/sim_bb/"  # 替换为你的目录路径
 prefix="bk_"
 # 进入目录

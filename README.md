@@ -96,7 +96,7 @@ cd $CBB_HOME/nocompress_wrf/test/em_real/
 cp nocomname namelist.input
 time mpirun -np 16 ./wrf.exe
 cd $CBB_HOME/scripts
-python3 dlwrf.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
 
 #### run wrf with software compress format
@@ -108,6 +108,7 @@ cd $CBB_HOME/DME
 cd $CBB_HOME/compress_wrf/test/em_real/
 cp comname namelist.input
 time mpirun -np 16 ./wrf.exe
+python3 dlwrf-com.py $CBB_HOME/compress_wrf/test/em_real/rsl.error.0000
 ```
 
 ##### Simulate the CBB files
@@ -134,4 +135,5 @@ cd $CBB_HOME/DME
 cd $CBB_HOME/nocompress_wrf/test/em_real/
 cp comname namelist.input
 time mpirun -np 16 ./wrf.exe
+python3 dlwrf-nocom.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
