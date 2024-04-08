@@ -78,9 +78,13 @@ cd conus12km
 cp wrfinput_d01 $CBB_HOME/run/PFS/compress
 cp wrfbdy_d01 $CBB_HOME/run/PFS/compress
 ```
+### Download the datasets of wrf and nyx
+```
+cp $CBB_HOME/run/PFS/compress
+```
 
 ### 2.2 run application with no-compress format
-#### Initial the BB 
+#### Initial the BB with no-compress format
 ```
 cd $CBB_HOME/DME
 . testBB-nocom.sh
@@ -88,6 +92,7 @@ cd $CBB_HOME/DME
 ```
 #### run wrf with sufficient BB
 ```
+cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/nocompress_wrf/test/em_real/
 cp nocomname namelist.input
@@ -97,6 +102,7 @@ python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
 #### Run NYX with sufficient BB
 ```
+cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/Nyx/Exec/AMR-density
 (time mpirun -np 16 ./nocomp input_nocom-nyx) >& nocomp-nyx.txt
@@ -105,23 +111,48 @@ python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
 #### Run Warpx with sufficient BB
 ```
+cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/Nyx/Exec/AMR-density
 (time mpirun -np 16 ./nocomp input_nocom-nyx) >& nocomp-nyx.txt
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
-### 2.2 run application with  software compress format
-#### run wrf with software compress format
+### 2.2 run application with software compress format
+#### Initial the BB with software compress format
 ```
 cd $CBB_HOME/DME
 . testBB-com.sh
-. init.sh #init the BB metadata
+. BB.sh
+```
+
+#### run wrf with software compress format
+```
+cd $CBB_HOME/DME
 . BB.sh
 cd $CBB_HOME/compress_wrf/test/em_real/
 cp comname namelist.input
 time mpirun -np 16 ./wrf.exe
 python3 dlwrf-com.py $CBB_HOME/compress_wrf/test/em_real/rsl.error.0000
+```
+
+#### Run NYX with sufficient BB
+```
+cd $CBB_HOME/DME
+. init.sh #init the BB metadata
+cd $CBB_HOME/Nyx/Exec/AMR-density
+(time mpirun -np 16 ./comp input_com-nyx) >& comp-nyx.txt
+cd $CBB_HOME/scripts
+python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+```
+#### Run Warpx with sufficient BB
+```
+cd $CBB_HOME/DME
+. init.sh #init the BB metadata
+cd $CBB_HOME/Nyx/Exec/AMR-density
+(time mpirun -np 16 ./comp input_com-nyx) >& comp-nyx.txt
+cd $CBB_HOME/scripts
+python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
 
 #### Simulate the CBB files

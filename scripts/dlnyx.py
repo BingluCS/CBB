@@ -15,35 +15,28 @@ def wrfget_data(filename):
     pattern_flush = r'Demoting time_use is (\d+\.\d+) us'
     matches = re.findall(pattern_flush, data)
     flushTime = 0
-    if match:
+    if matches:
         for match in matches:
             flushTime += float(match)/1000_000
     print(f"Flush time:\t{flushTime:.3f} s")
 
-
-    pattern_input = r"Timing for processing wrfinput file \(stream \d+\) for domain\s+\d+:\s+(\d+\.\d+) elapsed seconds"
-    matches = re.findall(pattern_input, data)
-    inTime = float(matches[0])
-
-    pattern_bdy = r"Timing for processing lateral boundary for domain\s+\d+:\s+(\d+\.\d+) elapsed seconds"
-    matches = re.findall(pattern_bdy, data)
-    bdyTime = float(matches[0])
-
-    print(f"Read time :\t{(bdyTime + inTime - prefetchTime):.3f} s")
-
-    # pattern_restart = r"Timing for Writing restart for domain\s+\d+:\s+(\d+\.\d+) elapsed seconds"
-    # matches = re.findall(pattern_restart, data)
-    # resTime = float(matches[0])
-    #print(f"Restart time:\t{resTime:.3f} s")
-    
-    pattern_out = r"Timing for Writing .* for domain\s+\d+:\s+(\d+\.\d+) elapsed seconds"
-    matches = re.findall(pattern_out, data)
-    out = 0.0
-    if match:
+    pattern_write = r'real write time = (\d+\.\d+)  seconds'
+    matches = re.findall(pattern_write, data)
+    writeTime = 0
+    if matches:
         for match in matches:
-            out += float(match)
-    sumout = out #+resTime
-    print(f"Write time:\t{(sumout-flushTime):.3f} s")
+            print(match)
+            writeTime += float(match)
+    print(f"Write time:\t{writeTime:.3f} s")
+
+    # pattern_write = r'real write time = (\d+\.\d+)  seconds'
+    # matches = re.findall(pattern_write, data)
+    # writeTime = 0
+    # if matches:
+    #     for match in matches:
+    #         print(match)
+    #         writeTime += float(match)
+    # print(f"Write time:\t{writeTime:.3f} s")
 
 file = sys.argv[1]
 wrfget_data(file)

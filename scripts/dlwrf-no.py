@@ -15,7 +15,7 @@ def wrfget_data(filename):
     pattern_flush = r'Demoting time_use is (\d+\.\d+) us'
     matches = re.findall(pattern_flush, data)
     flushTime = 0
-    if match:
+    if matches:
         for match in matches:
             flushTime += float(match)/1000_000
     print(f"Flush time:\t{flushTime:.3f} s")
@@ -39,7 +39,7 @@ def wrfget_data(filename):
     pattern_out = r"Timing for Writing .* for domain\s+\d+:\s+(\d+\.\d+) elapsed seconds"
     matches = re.findall(pattern_out, data)
     out = 0.0
-    if match:
+    if matches:
         for match in matches:
             out += float(match)
     sumout = out #+resTime
