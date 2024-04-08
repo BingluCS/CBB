@@ -161,8 +161,9 @@ python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
 cd $CBB_HOME/DME
 . init.sh #init the BB metadata
-cd $CBB_HOME/Nyx/Exec/AMR-density
-(time mpirun -np 16 ./comp input_com-nyx) >& comp-nyx.txt
+cd $CBB_HOME/warpx_directory/WarpX
+. base.sh
+(time mpirun -np 16 ./comp input_com-warpx) >& comp-warpx.txt
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```

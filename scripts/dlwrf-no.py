@@ -31,10 +31,6 @@ def wrfget_data(filename):
 
     print(f"Read time :\t\t{(bdyTime + inTime - prefetchTime):.3f} s")
 
-    # pattern_restart = r"Timing for Writing restart for domain\s+\d+:\s+(\d+\.\d+) elapsed seconds"
-    # matches = re.findall(pattern_restart, data)
-    # resTime = float(matches[0])
-    #print(f"Restart time:\t{resTime:.3f} s")
     
     pattern_out = r"Timing for Writing .* for domain\s+\d+:\s+(\d+\.\d+) elapsed seconds"
     matches = re.findall(pattern_out, data)
