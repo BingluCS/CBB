@@ -94,40 +94,35 @@ cp wrfbdy_d01 $CBB_HOME/run/PFS/compress
 cp $CBB_HOME/run/PFS/compress
 ```
 
-### 2.2 run application with no-compress format
+### 2.2 run application with insufficient BB
 #### Initial the BB with no-compress format
 ```
 cd $CBB_HOME/DME
 . testBB-nocom.sh
 . BB.sh
 ```
-#### run wrf with sufficient BB
+#### run wrf with no-compress format
 ```
 cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/nocompress_wrf/test/em_real/
 cp nocomname namelist.input
-time mpirun -np 16 ./wrf.exe
-cd $CBB_HOME/scripts
-python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+（time mpirun -np 16 ./wrf.exe） >& $CBB_HOME/out/nocomp-wrf.txt
+cp rsl.error.0000 $CBB_HOME/out/nocomp-rsl
 ```
-#### Run NYX with sufficient BB
-```
-cd $CBB_HOME/DME
-. init.sh #init the BB metadata
-cd $CBB_HOME/Nyx/Exec/AMR-density
-(time mpirun -np 16 ./nocomp input_nocom-nyx) >& nocomp-nyx.txt
-cd $CBB_HOME/scripts
-python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
-```
-#### Run Warpx with sufficient BB
+#### Run NYX with no-compress format
 ```
 cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/Nyx/Exec/AMR-density
-(time mpirun -np 16 ./nocomp input_nocom-nyx) >& nocomp-nyx.txt
-cd $CBB_HOME/scripts
-python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+(time mpirun -np 16 ./nocomp input_nocom-nyx) >& $CBB_HOME/out/nocomp-nyx.txt
+```
+#### Run Warpx with no-compress format
+```
+cd $CBB_HOME/DME
+. init.sh #init the BB metadata
+cd $CBB_HOME/warpx_directory/WarpX
+(time mpirun -np 16 ./nocomp input_nocom-warpx) >& $CBB_HOME/out/nocomp-warpx.txt
 ```
 ### 2.3 run application with software compress format
 #### Initial the BB with software compress format
@@ -143,11 +138,59 @@ cd $CBB_HOME/DME
 . init.sh
 cd $CBB_HOME/compress_wrf/test/em_real/
 cp comname namelist.input
+(time mpirun -np 16 ./wrf.exe) >& $CBB_HOME/out/comp-wrf.txt
+cp rsl.error.0000 $CBB_HOME/out/comp-rsl
+```
+
+#### Run NYX with software compress format
+```
+cd $CBB_HOME/DME
+. init.sh 
+cd $CBB_HOME/Nyx/Exec/AMR-density
+. base.sh
+(time mpirun -np 16 ./comp input_com-nyx) >& $CBB_HOME/out/comp-nyx.txt
+```
+#### Run Warpx with software compress format
+```
+cd $CBB_HOME/DME
+. init.sh #init the BB metadata
+cd $CBB_HOME/warpx_directory/WarpX
+. base.sh
+(time mpirun -np 16 ./comp input_com-warpx) >& $CBB_HOME/out/comp-warpx.txt
+```
+### 2.4 run application with CBB
+#### Simulate the CBB files
+note: CBB is based on Real Computational Storage Drive(CSD). If you can apply CSD to BB, you don't use scripts to simulate the CSD files. 
+```
+# please move all files of wrf (both input and output) to the directory ($CBB_HOME/tmp/) 
+cd  $CBB_HOME
+mkdir sim_files
+cd  $CBB_HOME/sim_bb
+git clone https://github.com/taovcu/DPZipSim.git
+mv DPZipSim/dpzip_sim.py . 
+python3 sim_file.py $CBB_HOME/tmp/
+python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+```
+Although the metadata json file is created in advance, you can still create metadata json files as needed.
+
+#### Initial the BB with CBB
+```
+cd $CBB_HOME/DME
+. testBB-cbb.sh
+. BB.sh
+```
+
+#### run wrf with CBB
+```
+cd $CBB_HOME/DME
+. init.sh
+cd $CBB_HOME/compress_wrf/test/em_real/
+cp comname namelist.input
 time mpirun -np 16 ./wrf.exe
 python3 dlwrf-com.py $CBB_HOME/compress_wrf/test/em_real/rsl.error.0000
 ```
 
-#### Run NYX with sufficient BB
+#### Run NYX with CBB
 ```
 cd $CBB_HOME/DME
 . init.sh 
@@ -157,7 +200,7 @@ cd $CBB_HOME/Nyx/Exec/AMR-density
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
-#### Run Warpx with sufficient BB
+#### Run Warpx with CBB
 ```
 cd $CBB_HOME/DME
 . init.sh #init the BB metadata
@@ -167,34 +210,4 @@ cd $CBB_HOME/warpx_directory/WarpX
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
-
-#### Simulate the CBB files
-note: CBB is based on Real Computational Storage Drive(CSD). If you can apply CSD to BB, you don't use scripts to simulate the CSD files. 
-please move all files fo wrf (both input and output) to the directory ($CBB_HOME/tmp/) 
-```
-cd  $CBB_HOME
-mkdir sim_files
-cd  $CBB_HOME/sim_bb
-git clone https://github.com/taovcu/DPZipSim.git
-mv DPZipSim/dpzip_sim.py . 
-python3 sim_file.py $CBB_HOME/tmp/
-python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
-```
-Although the metadata json file is created in advance, you can still create metadata json files as needed
-
-#### run wrf with cbb
-```
-cd $CBB_HOME/DME
-. testBB-cbb.sh
-. init.sh #init the BB metadata
-. initcbb.sh
-. BB.sh
-
-cd $CBB_HOME/nocompress_wrf/test/em_real/
-cp cbbname namelist.input
-time mpirun -np 16 ./wrf.exe
-cd $CBB_HOME/scripts
-python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
-```
-
 
