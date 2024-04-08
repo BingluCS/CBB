@@ -27,17 +27,17 @@ cd DME
 . BB.sh
 ```
 
-### 1.5 Download and install the HDF5 library 
+### 1.5 Download and install the HDF5 and netcdf library 
 
 ```
 cd $CBB_HOME
 . hdf5.sh
-```
-
-### 1.6 Download and install the netcdf
-
-```
 . netcdf.sh
+```
+
+### 1.6 Intsall the SZ compressor
+```
+. compressor.sh
 ```
 
 ### 1.7 Install the WRF with compress and no-compress mode
@@ -129,7 +129,7 @@ cd $CBB_HOME/DME
 #### run wrf with software compress format
 ```
 cd $CBB_HOME/DME
-. BB.sh
+. init.sh
 cd $CBB_HOME/compress_wrf/test/em_real/
 cp comname namelist.input
 time mpirun -np 16 ./wrf.exe
