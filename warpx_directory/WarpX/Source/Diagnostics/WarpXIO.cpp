@@ -10,7 +10,7 @@
 
 extern "C" {
 
-#include <CacheFuction.h>
+#include "BurstBuffer.h"
 }
 
 #include "BoundaryConditions/PML.H"

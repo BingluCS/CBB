@@ -1,6 +1,6 @@
 extern "C" {
 
-#include <CacheFuction.h>
+#include <BurstBuffer.h>
 }
 #include <AMReX_Geometry.H>
 #include <AMReX_TagBox.H>

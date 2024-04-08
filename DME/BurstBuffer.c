@@ -1,5 +1,6 @@
 
 #include "BurstBuffer.h"
+#include "cJSON/cJSON.h"
 #include <string.h>
 const char *key0 = "valid";
 const char *key1 = "size";

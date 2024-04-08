@@ -111,7 +111,7 @@ time mpirun -np 16 ./wrf.exe
 python3 dlwrf-com.py $CBB_HOME/compress_wrf/test/em_real/rsl.error.0000
 ```
 
-##### Simulate the CBB files
+#### Simulate the CBB files
 note: CBB is based on Real Computational Storage Drive(CSD). If you can apply CSD to BB, you don't use scripts to simulate the CSD files. 
 please move all files fo wrf (both input and output) to the directory ($CBB_HOME/tmp/) 
 ```
@@ -121,6 +121,7 @@ cd  $CBB_HOME/sim_bb
 git clone https://github.com/taovcu/DPZipSim.git
 mv DPZipSim/dpzip_sim.py . 
 python3 sim_file.py $CBB_HOME/tmp/
+python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
 Although the metadata json file is created in advance, you can still create metadata json files as needed
 
@@ -137,4 +138,17 @@ cp cbbname namelist.input
 time mpirun -np 16 ./wrf.exe
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+```
+
+### 2.3 Run NYX 
+```
+cd $CBB_HOME/DME
+. testBB-nocom.sh
+. init.sh #init the BB metadata
+. BB.sh
+cd $CBB_HOME/Nyx/Exec/AMR-density
+(time mpirun -np 16 ./nocomp input_nocom-nyx) >& nocomp-nyx.txt
+cd $CBB_HOME/scripts
+python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+
 ```

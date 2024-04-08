@@ -1,3 +1,6 @@
+extern "C" {
+#include <BurstBuffer.h>
+}
 #include <AMReX_VisMF.H>
 #include <AMReX_AsyncOut.H>
 #include <AMReX_PlotFileUtil.H>
@@ -373,11 +376,20 @@ void WriteMultiLevelPlotfileHDF5SingleDset (const std::string& plotfilename,
     int finest_level = nlevels-1;
     int ncomp = mf[0]->nComp();
     /* double total_write_start_time(ParallelDescriptor::second()); */
+    int rank;
+    MPI_Comm_rank(MPI_COMM_WORLD, &rank);
+    if(rank == 0)
+        //fprintf(stderr,"hook successfully!\n");
+        Write_file_cache(plotfilename.c_str());
+    MPI_Barrier(MPI_COMM_WORLD);
     std::string filename(plotfilename + ".h5");
 
     // Write out root level metadata
     hid_t fapl, dxpl_col, dxpl_ind, dcpl_id, fid, grp;
-
+    if(rank == 0)
+        //fprintf(stderr,"hook successfully!\n");
+        Write_file_cache(filename.c_str());
+    MPI_Barrier(MPI_COMM_WORLD);
     if(ParallelDescriptor::IOProcessor()) {
         BL_PROFILE_VAR("H5writeMetadata", h5dwm);
         // Create the HDF5 file
