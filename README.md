@@ -77,6 +77,7 @@ cd $CBB_HOME
 ### 2.1 Download the no-compress dateset  
 #### Download the no-compress dateset  
 ```
+cd $CBB_HOME/run/PFS/nocompress
 wget https://www2.mmm.ucar.edu/wrf/src/non_compressed_12km.tar.gz
 tar xvf non_compressed_12km.tar.gz
 cd non_compressed_12km
@@ -95,8 +96,14 @@ cp wrfbdy_d01 $CBB_HOME/run/PFS/compress
 ```
 
 ### Download the datasets of wrf and nyx
+For the datasets of wrf and nyx, we share them on Onedrive(https://hnueducn-my.sharepoint.com/:f:/g/personal/lbcs_hnu_edu_cn/EulfVRRn01VNoNwQ0QH6yA8BDJibuZymfsXo5DqIIKIg6A)
 ```
-cp $CBB_HOME/run/PFS/compress
+cp /your/install/chk00005 $CBB_HOME/run/PFS/nocompress
+cp /your/install/chk001000 $CBB_HOME/run/PFS/nocompress
+cp /your/install/chk00005 $CBB_HOME/run/PFS/compress
+cp /your/install/chk001000 $CBB_HOME/run/PFS/compress
+cp /your/install/chk00005 $CBB_HOME/run/BB/cbb
+cp /your/install/chk001000 $CBB_HOME/run/BB/cbb
 ```
 
 ### 2.2 run application with no-compress format
@@ -108,32 +115,18 @@ cd $CBB_HOME/DME
 ```
 #### run wrf with no-compress format
 ```
-cd $CBB_HOME/DME
-. init.sh #init the BB metadata
-cd $CBB_HOME/nocompress_wrf/test/em_real/
-cp nocomname namelist.input
-(time mpirun -np 8 ./wrf.exe) >& $CBB_HOME/out/nocom-wrf
-cp rsl.error.0000 $CBB_HOME/out/nocom-rsl
-cd $CBB_HOME/DME
-python3 flush.py >& $CBB_HOME/out/nocom-wrff # calculate the flush time when BB capacity is insufficient
+cd $CBB_HOME/test
+. test-nocom.sh wrf
 ```
 #### Run NYX with no-compress format
 ```
-cd $CBB_HOME/DME
-. init.sh #init the BB metadata
-cd $CBB_HOME/Nyx/Exec/AMR-density
-(time mpirun -np 8 ./nocomp input_nocom-nyx) >& $CBB_HOME/out/nocom-nyx
-cd $CBB_HOME/DME
-python3 flush.py >& $CBB_HOME/out/nocom-nyxf
+cd $CBB_HOME/test
+. test-nocom.sh nyx
 ```
 #### Run Warpx with no-compress format
 ```
-cd $CBB_HOME/DME
-. init.sh #init the BB metadata
-cd $CBB_HOME/warpx_directory/WarpX
-(time mpirun -np 8 ./nocomp input_nocom-warpx) >& $CBB_HOME/out/nocom-warpx
-cd $CBB_HOME/DME
-python3 flush.py >& $CBB_HOME/out/nocom-warpxf
+cd $CBB_HOME/test
+. test-nocom.sh warpx
 ```
 #### Evaluation
 ```
