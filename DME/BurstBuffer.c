@@ -1,4 +1,3 @@
-
 #include "BurstBuffer.h"
 #include "cJSON/cJSON.h"
 #include <string.h>

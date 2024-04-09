@@ -21,6 +21,6 @@ export C_INCLUDE_PATH=$MPI_DIR/include\
 export CPLUS_INCLUDE_PATH=$MPI_DIR/\
 include:$CPLUS_INCLUDE_PATH
 
-mkdir -p $CBB_HOME/run/BB/compreess $CBB_HOME/run/BB/nocompreess $CBB_HOME/run/BB/cbb
+mkdir -p $CBB_HOME/run/BB/compress $CBB_HOME/run/BB/nocompress $CBB_HOME/run/BB/cbb
 cp -r $CBB_HOME/run/BB $CBB_HOME/run/PFS
-mkdir $CBB_HOME/run/BB/sim_bb 
+mkdir -p $CBB_HOME/run/BB/sim_bb 
