@@ -4,37 +4,29 @@ While preparing the artifacts, we deploy a 12-node virtual cluster on data cente
 
 ## Minimum system requirements
 OS: Ubuntu (20.04 is recommended)
-
-
 Memory: >= 16 GB RAM
-
 Processor: >= 8 cores (>=16 is recommended)
-
 Storage: a SSD >= 64 GBs, a HDD >= 64GBs
-
 gcc/9.5.0
 
-## 1. Install
 
+## 1. Install
 please make sure your installation directory is in the SSD.
 ### 1.1 Set environment
 
 ```
 . environment.sh
 ```
-
 ### 1.2 Install dependent libraries and packages
 ```
 sudo apt install libtool automake autoconf make m4 grads default-jre csh time
 . requirements.sh
 ```
-
 ### 1.3 Load or install MPICH
 
 ```
 . mpi.sh
 ```
-
 ### 1.4 Initial the BB config
 ```
 cd DME
@@ -42,7 +34,6 @@ cd DME
 . cJson.sh
 . BB.sh
 ```
-
 ### 1.5 Download and install the HDF5 and netcdf library 
 
 ```
@@ -50,24 +41,20 @@ cd $CBB_HOME
 . hdf5.sh
 . netcdf.sh
 ```
-
 ### 1.6 Intsall the SZ compressor
 ```
 . compressor.sh
 ```
-
 ### 1.7 Install the WRF with compress and no-compress mode
 
 ```
 . wrf.sh
 ```
-
 ### 1.8 Install the Nyx with compress and no-compress mode
 
 ```
 . nyx.sh
 ```
-
 ### 1.9 Install the WarpX with compress and no-compress mode
 
 ```
@@ -115,6 +102,7 @@ cd $CBB_HOME/DME
 . testBB-nocom.sh
 . BB.sh
 ```
+
 #### run wrf with no-compress format
 ```
 cd $CBB_HOME/test
@@ -135,6 +123,7 @@ cd $CBB_HOME/test
 cd $CBB_HOME/out
 . analyse.sh nocom
 ```
+
 ### 2.3 run application with software compress format
 #### Initial the BB with software compress format
 ```
@@ -148,7 +137,6 @@ cd $CBB_HOME/DME
 cd $CBB_HOME/test
 . test-com.sh wrf
 ```
-
 #### Run NYX with software compress format
 ```
 cd $CBB_HOME/test
@@ -159,12 +147,12 @@ cd $CBB_HOME/test
 cd $CBB_HOME/test
 . test-com.sh warpx
 ```
-
 #### Evaluation
 ```
 cd $CBB_HOME/out
 . analyse.sh com
 ```
+
 ### 2.4 run application with CBB
 #### Simulate the CBB files
 Note: CBB is based on Real Computational Storage Drive(CSD). For this experiment, We offer some simualtion files of real applicaitons based on CSD compression and their metadata file in advance. If necessary, we support the manual creation of these files using the scripts we provide. If you have CSD cand can apply CSD to BB, you don't use scripts to simulate the CSD files. 
@@ -191,33 +179,21 @@ cd $CBB_HOME/DME
 
 #### run wrf with CBB
 ```
-cd $CBB_HOME/DME
-. init.sh
-. initcbb.sh
-cd $CBB_HOME/compress_wrf/test/em_real/
-cp comname namelist.input
-time mpirun -np 16 ./wrf.exe
-python3 dlwrf-com.py $CBB_HOME/compress_wrf/test/em_real/rsl.error.0000
+cd $CBB_HOME/test
+. test-cbb.sh wrf
 ```
-
 #### Run NYX with CBB
 ```
-cd $CBB_HOME/DME
-. init.sh 
-cd $CBB_HOME/Nyx/Exec/AMR-density
-. base.sh
-(time mpirun -np 16 ./comp input_com-nyx) >& com-nyx.txt
-cd $CBB_HOME/scripts
-python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+cd $CBB_HOME/test
+. test-cbb.sh nyx
 ```
 #### Run Warpx with CBB
 ```
-cd $CBB_HOME/DME
-. init.sh #init the BB metadata
-cd $CBB_HOME/warpx_directory/WarpX
-. base.sh
-(time mpirun -np 16 ./comp input_com-warpx) >& com-warpx.txt
-cd $CBB_HOME/scripts
-python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
+cd $CBB_HOME/test
+. test-cbb.sh warpx
 ```
-
+#### Evaluation
+```
+cd $CBB_HOME/out
+. analyse.sh cbb
+```
