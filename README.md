@@ -5,11 +5,14 @@ While preparing the artifacts, we deploy a 12-node virtual cluster on data cente
 ## Minimum system requirements
 OS: Ubuntu (20.04 is recommended)
 
+
 Memory: >= 16 GB RAM
 
 Processor: >= 8 cores (>=16 is recommended)
 
 Storage: >= 128 GBs
+
+gcc/9.5.0
 
 ## 1. Install
 
