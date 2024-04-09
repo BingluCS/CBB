@@ -167,19 +167,21 @@ cd $CBB_HOME/out
 ```
 ### 2.4 run application with CBB
 #### Simulate the CBB files
-note: CBB is based on Real Computational Storage Drive(CSD). If you can apply CSD to BB, you don't use scripts to simulate the CSD files. 
+Note: CBB is based on Real Computational Storage Drive(CSD). For this experiment, We offer some simualtion files of real applicaitons based on CSD compression and their metadata file in advance. If necessary, we support the manual creation of these files using the scripts we provide. If you have CSD cand can apply CSD to BB, you don't use scripts to simulate the CSD files. 
+
+Method 1: 
+```
+cd   $CBB_HOME/run/BB/
+mv $CBB_HOME/sim_bb/sim_bb.tar.gz .
+tar xvf sim_bb.tar.gz
+cd sim_bb && cp * $CBB_HOME/run/PFS/cbb
+```
+
+Method 2:
 ```
 # please move all files of wrf (both input and output) to the directory ($CBB_HOME/tmp/) 
-cd  $CBB_HOME
-mkdir sim_files
-cd  $CBB_HOME/sim_bb
-git clone https://github.com/taovcu/DPZipSim.git
-mv DPZipSim/dpzip_sim.py . 
-python3 sim_file.py $CBB_HOME/tmp/
-python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
-```
-Although the metadata json file is created in advance, you can still create metadata json files as needed.
 
+```
 #### Initial the BB with CBB
 ```
 cd $CBB_HOME/DME
