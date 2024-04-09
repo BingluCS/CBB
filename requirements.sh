@@ -24,4 +24,5 @@ tar xzvf jasper-1.900.1.tar.gz
 cd jasper-1.900.1
 ./configure --prefix=$DIR/grib2
 make -j 8
+make install
 cd $CBB_HOME

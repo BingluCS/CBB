@@ -24,6 +24,7 @@ gcc/9.5.0
 
 ### 1.2 Install dependent libraries and packages
 ```
+sudo apt install libtool automake autoconf make m4 grads default-jre csh time
 . requirements.sh
 ```
 
@@ -36,7 +37,7 @@ gcc/9.5.0
 ### 1.4 Initial the BB config
 ```
 cd DME
-. testBBconfig.sh 
+. testBB-nocom.sh 
 . cJson.sh
 . BB.sh
 ```
@@ -92,6 +93,7 @@ cd conus12km
 cp wrfinput_d01 $CBB_HOME/run/PFS/compress
 cp wrfbdy_d01 $CBB_HOME/run/PFS/compress
 ```
+
 ### Download the datasets of wrf and nyx
 ```
 cp $CBB_HOME/run/PFS/compress
