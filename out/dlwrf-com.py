@@ -63,7 +63,7 @@ def pTime(prefetch,flush,read,write,total):
     print(f"Flush time:\t\t\t{flush:.3f} s")
     print(f"Read time :\t\t\t{read:.3f} s")
     print(f"Write + compression time:\t{(write):.3f} s")
-    print(f"Total + decompression time:\t{total:.3f} s")
+    print(f"Total time:\t\t\t{total:.3f} s")
     print("")
 
 file0, file1 = sys.argv[1], sys.argv[2]

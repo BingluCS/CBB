@@ -42,7 +42,7 @@ def insufficient(filename):
             flushTime += float(match)/1000_000
     return flushTime
 
-def pTime(prefetch,flush,read,write,total):
+def pTime(prefetch,flush,write,total):
     print(f"Prefetch time:\t\t\t{prefetch:.3f} s")
     print(f"Flush time:\t\t\t{flush:.3f} s")
     print(f"Write time:\t\t\t{(write):.3f} s")
@@ -50,13 +50,12 @@ def pTime(prefetch,flush,read,write,total):
     print("")
 
 file = sys.argv[1]
-get_data(file)
 prefetch, flush, write, total = get_data(file)
 
 print("BB is insufficient:")
 pTime(prefetch, flush, write, total)
 
-if len(sys.argv) > 3:
+if len(sys.argv) > 2:
     f = insufficient(file + "f")
     print("BB is insufficient:")
     pTime(prefetch, flush + f, write, total + f)

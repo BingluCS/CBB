@@ -10,12 +10,13 @@ Memory: >= 16 GB RAM
 
 Processor: >= 8 cores (>=16 is recommended)
 
-Storage: >= 128 GBs
+Storage: a SSD >= 64 GBs, a HDD >= 64GBs
 
 gcc/9.5.0
 
 ## 1. Install
 
+please make sure your installation directory is in the SSD.
 ### 1.1 Set environment
 
 ```
@@ -74,7 +75,8 @@ cd $CBB_HOME
 ```
 
 ## 2. test
-### 2.1 Download the no-compress dateset  
+### 2.1 Download the no-compress dateset 
+If necessary, you need to change the PFS directory to be on the HDD for simulating the real Parallel File System(PFS). 
 #### Download the no-compress dateset  
 ```
 cd $CBB_HOME/run/PFS/nocompress
@@ -143,35 +145,19 @@ cd $CBB_HOME/DME
 
 #### run wrf with software compress format
 ```
-cd $CBB_HOME/DME
-. init.sh
-cd $CBB_HOME/compress_wrf/test/em_real/
-cp comname namelist.input
-(time mpirun -np 8 ./wrf.exe) >& $CBB_HOME/out/com-wrf
-cp rsl.error.0000 $CBB_HOME/out/comp-rsl
-cd $CBB_HOME/DME
-python3 flush.py >& $CBB_HOME/out/com-wrff
+cd $CBB_HOME/test
+. test-com.sh wrf
 ```
 
 #### Run NYX with software compress format
 ```
-cd $CBB_HOME/DME
-. init.sh 
-cd $CBB_HOME/Nyx/Exec/AMR-density
-. base.sh
-(time mpirun -np 8 ./comp input_com-nyx) >& $CBB_HOME/out/com-nyx
-cd $CBB_HOME/DME
-python3 flush.py >& $CBB_HOME/out/com-nyxf
+cd $CBB_HOME/test
+. test-com.sh nyx
 ```
 #### Run Warpx with software compress format
 ```
-cd $CBB_HOME/DME
-. init.sh #init the BB metadata
-cd $CBB_HOME/warpx_directory/WarpX
-. base.sh
-(time mpirun -np 8 ./comp input_com-warpx) >& $CBB_HOME/out/com-warpx
-cd $CBB_HOME/DME
-python3 flush.py >& $CBB_HOME/out/com-warpxf
+cd $CBB_HOME/test
+. test-com.sh warpx
 ```
 
 #### Evaluation
