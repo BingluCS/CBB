@@ -1,6 +1,6 @@
 echo "WRF:   -----------------------------------"
-python3 dlwrf-com.py comp-rsl comp-wrf.txt 
+python3 dlwrf-$1.py $1-rsl $1-wrf.txt 
 echo "NYX:   -----------------------------------"
-python3 dltime-com.py comp-nyx.txt 
+python3 dltime-$1.py $1-nyx.txt 
 echo "WarpX: -----------------------------------"
-python3 dltime-com.py comp-warpx.txt
+python3 dltime-$1.py $1-warpx.txt

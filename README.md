@@ -94,7 +94,7 @@ cp wrfbdy_d01 $CBB_HOME/run/PFS/compress
 cp $CBB_HOME/run/PFS/compress
 ```
 
-### 2.2 run application with insufficient BB
+### 2.2 run application with no-compress format
 #### Initial the BB with no-compress format
 ```
 cd $CBB_HOME/DME
@@ -107,22 +107,33 @@ cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/nocompress_wrf/test/em_real/
 cp nocomname namelist.input
-(time mpirun -np 8 ./wrf.exe) >& $CBB_HOME/out/nocomp-wrf.txt
-cp rsl.error.0000 $CBB_HOME/out/nocomp-rsl
+(time mpirun -np 8 ./wrf.exe) >& $CBB_HOME/out/nocom-wrf
+cp rsl.error.0000 $CBB_HOME/out/nocom-rsl
+cd $CBB_HOME/DME
+python3 flush.py >& $CBB_HOME/out/nocom-wrff # calculate the flush time when BB capacity is insufficient
 ```
 #### Run NYX with no-compress format
 ```
 cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/Nyx/Exec/AMR-density
-(time mpirun -np 8 ./nocomp input_nocom-nyx) >& $CBB_HOME/out/nocomp-nyx.txt
+(time mpirun -np 8 ./nocomp input_nocom-nyx) >& $CBB_HOME/out/nocom-nyx
+cd $CBB_HOME/DME
+python3 flush.py >& $CBB_HOME/out/nocom-nyxf
 ```
 #### Run Warpx with no-compress format
 ```
 cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/warpx_directory/WarpX
-(time mpirun -np 8 ./nocomp input_nocom-warpx) >& $CBB_HOME/out/nocomp-warpx.txt
+(time mpirun -np 8 ./nocomp input_nocom-warpx) >& $CBB_HOME/out/nocom-warpx
+cd $CBB_HOME/DME
+python3 flush.py >& $CBB_HOME/out/nocom-warpxf
+```
+#### Evaluation
+```
+cd $CBB_HOME/out
+. analyse.sh nocom
 ```
 ### 2.3 run application with software compress format
 #### Initial the BB with software compress format
@@ -138,8 +149,10 @@ cd $CBB_HOME/DME
 . init.sh
 cd $CBB_HOME/compress_wrf/test/em_real/
 cp comname namelist.input
-(time mpirun -np 8 ./wrf.exe) >& $CBB_HOME/out/comp-wrf.txt
+(time mpirun -np 8 ./wrf.exe) >& $CBB_HOME/out/com-wrf
 cp rsl.error.0000 $CBB_HOME/out/comp-rsl
+cd $CBB_HOME/DME
+python3 flush.py >& $CBB_HOME/out/com-wrff
 ```
 
 #### Run NYX with software compress format
@@ -148,7 +161,9 @@ cd $CBB_HOME/DME
 . init.sh 
 cd $CBB_HOME/Nyx/Exec/AMR-density
 . base.sh
-(time mpirun -np 8 ./comp input_com-nyx) >& $CBB_HOME/out/comp-nyx.txt
+(time mpirun -np 8 ./comp input_com-nyx) >& $CBB_HOME/out/com-nyx
+cd $CBB_HOME/DME
+python3 flush.py >& $CBB_HOME/out/com-nyxf
 ```
 #### Run Warpx with software compress format
 ```
@@ -156,7 +171,15 @@ cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/warpx_directory/WarpX
 . base.sh
-(time mpirun -np 8 ./comp input_com-warpx) >& $CBB_HOME/out/comp-warpx.txt
+(time mpirun -np 8 ./comp input_com-warpx) >& $CBB_HOME/out/com-warpx
+cd $CBB_HOME/DME
+python3 flush.py >& $CBB_HOME/out/com-warpxf
+```
+
+#### Evaluation
+```
+cd $CBB_HOME/out
+. analyse.sh com
 ```
 ### 2.4 run application with CBB
 #### Simulate the CBB files
@@ -184,6 +207,7 @@ cd $CBB_HOME/DME
 ```
 cd $CBB_HOME/DME
 . init.sh
+. initcbb.sh
 cd $CBB_HOME/compress_wrf/test/em_real/
 cp comname namelist.input
 time mpirun -np 16 ./wrf.exe
@@ -196,7 +220,7 @@ cd $CBB_HOME/DME
 . init.sh 
 cd $CBB_HOME/Nyx/Exec/AMR-density
 . base.sh
-(time mpirun -np 16 ./comp input_com-nyx) >& comp-nyx.txt
+(time mpirun -np 16 ./comp input_com-nyx) >& com-nyx.txt
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
@@ -206,7 +230,7 @@ cd $CBB_HOME/DME
 . init.sh #init the BB metadata
 cd $CBB_HOME/warpx_directory/WarpX
 . base.sh
-(time mpirun -np 16 ./comp input_com-warpx) >& comp-warpx.txt
+(time mpirun -np 16 ./comp input_com-warpx) >& com-warpx.txt
 cd $CBB_HOME/scripts
 python3 dlwrf-no.py $CBB_HOME/nocompress_wrf/test/em_real/rsl.error.0000
 ```
