@@ -1,12 +1,11 @@
 # CBB
 This projetc is the simulation of the computational Burst Buffer(CBB) based on computational storage drive (CSD).
-While preparing the artifacts, we deploy a 12-node virtual cluster on data center servers with two Intel Xeon Gold 6330 2.0 GHz CPUs and 128GB DDR4 memory to simulate the HPC storage infrastructure. Each compute node is deployed with 8 vCPUs and 8GB DRAM. The CBB node has a PCIe Gen5 x4 CSD directly attached via vfio passthrough. 
 
 ## Minimum system requirements
 OS: Ubuntu (20.04 is recommended)
 Memory: >= 16 GB RAM
 Processor: >= 8 cores (>=16 is recommended)
-Storage: a SSD >= 64 GBs, a HDD >= 64GBs
+Storage: a SSD >= 128 GBs, a HDD >= 128 GBs
 gcc/9.5.0
 
 
@@ -198,3 +197,20 @@ cd $CBB_HOME/test
 cd $CBB_HOME/out
 . analyse.sh cbb
 ```
+
+## 3. the whole Evaluation
+While preparing the artifacts, we deploy a 12-node virtual cluster on data center servers with two Intel Xeon Gold 6330 2.0 GHz CPUs and 128GB DDR4 memory to simulate the HPC storage infrastructure. Each compute node is deployed with 8 vCPUs and 8GB DRAM. The CBB node has a PCIe Gen5 x4 CSD directly attached via vfio passthrough.
+
+All evaluations are divided into 3 parts:
+
+- test1 for overall performance with different BB size under three conditions(no-compress BB, software compression BB and CBB).
+- test2 for CPU utilization under three conditions.
+- test3 for cache hit under three conditions.
+
+#### tes1
+###
+cd $CBB_HOME/test
+. test1.sh nocom
+. test1.sh com
+. test1.sh cbb
+###
