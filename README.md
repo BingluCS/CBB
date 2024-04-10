@@ -158,10 +158,9 @@ Note: CBB is based on Real Computational Storage Drive(CSD). For this experiment
 
 Method 1: 
 ```
-cd   $CBB_HOME/run/BB/
-mv $CBB_HOME/sim_bb.tar.gz .
+cd   $CBB_HOME/run/
 tar xvf sim_bb.tar.gz
-cd sim_bb && cp * $CBB_HOME/run/PFS/cbb
+cd sim_bb && cp * $CBB_HOME/run/PFS/cbb -r
 ```
 
 Method 2:
