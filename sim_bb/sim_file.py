@@ -35,5 +35,5 @@ def run_test_for_files(directory, prefix,script =None):
 if __name__ == "__main__":
     directory = sys.argv[1]
     #print(directory[:-4])
-    run_test_for_files(directory,directory[:-4],f"{directory[:-4]}sim_bb/dpzip_sim.py dpzip",)
+    run_test_for_files(directory,directory[:-4],f"{directory[:-4]}sim_bb/DPZipSim/dpzip_sim.py dpzip",)
 

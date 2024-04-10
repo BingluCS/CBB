@@ -167,8 +167,9 @@ cd sim_bb && cp * $CBB_HOME/run/PFS/cbb
 
 Method 2:
 ```
-# please move all files of wrf (both input and output) to the directory ($CBB_HOME/tmp/) 
-
+cd  $CBB_HOME/sim_bb
+git clone https://github.com/taovcu/DPZipSim.git
+python3 sim_file.py $$CBB_HOME/tmp/
 ```
 #### Initial the BB with CBB
 ```
