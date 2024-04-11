@@ -8,7 +8,7 @@ dest_dir=$CBB_HOME/run/BB/sim_bb/
 for file in "$source_dir"/*; do
     filename=$(basename "$file")
     if [ ! -e "$dest_dir/$filename" ] && [ ! -e "$dest_dir/bk_$filename" ]; then
-        cp "$file" "$dest_dir/bk_$filename"
+        cp -r "$file" "$dest_dir/bk_$filename"
         # echo "Copied $filename to $dest_dir"
     # else
     #     echo "Skipped $filename"

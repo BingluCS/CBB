@@ -1,7 +1,8 @@
 import sys
 import re
 import os
-
+import csv
+import pandas as pd
 pattern_prefetch = r'Prefetch time_use is (\d+\.\d+) us'
 pattern_flush = r'Demoting time_use is (\d+\.\d+) us'
 pattern_write = r'real write time = (\d+\.\d+)  seconds'
@@ -87,19 +88,31 @@ def pTime(prefetch,flush,write,total):
 if __name__ == "__main__":
     data = []
     for type in ['nocom','com','cbb']:
-        print(type)
-        for i in range(10,50):
-            if os.path.exists(f"{type}-wrf-{i}"):
-                prefetch, flush, read, write = get_wrfdata(f"{type}-rsl-{i}")
-                total = get_wrftotal(f"{type}-wrf-{i}")
-                x = [0, i, 'wrf', prefetch, flush, read, write, total]
-                print(x)
-            if os.path.exists(f"{type}-nyx-{i}"):
-                prefetch, flush, write, total = get_amrdata(f"{type}-nyx-{i}")
-                x = [0, i, 'nyx', prefetch, flush, 0, write, total]
-                print(x)
-            if os.path.exists(f"{type}-nyx-{i}"):
-                prefetch, flush, write, total = get_amrdata(f"{type}-warpx-{i}")
-                x = [0, i, 'warpx', prefetch, flush, 0, write, total]
-                print(x)
-
+        with open(f'1-{type}.csv', 'a') as csvfile:
+            csv_writer = csv.writer(csvfile)
+            csv_writer.writerow(["type","size","num","app","prefetch","flush","read","write","total","all"])
+            for num in range(3):
+                print(type)
+                for i in range(10,51):
+                    time, all = [], 0
+                    if os.path.exists(f"./test1/{type}-wrf-{num}-{i}"):
+                        prefetch, flush, read, write = get_wrfdata(f"./test1/{type}-rsl-{num}-{i}")
+                        total = get_wrftotal(f"./test1/{type}-wrf-{num}-{i}")
+                        all += total
+                        time.append([0, i, num, 'wrf', prefetch, flush, read, write, total, 0])
+                    if os.path.exists(f"./test1/{type}-nyx-{num}-{i}"):
+                        prefetch, flush, write, total = get_amrdata(f"./test1/{type}-nyx-{num}-{i}")
+                        all += total
+                        time.append([0, i, num, 'nyx', prefetch, flush, 0, write, total, 0])
+                    if os.path.exists(f"./test1/{type}-nyx-{num}-{i}"):
+                        prefetch, flush, write, total = get_amrdata(f"./test1/{type}-warpx-{num}-{i}")
+                        all += total
+                        time.append([0, i, num, 'warpx', prefetch, flush, 0, write, total, all])
+                        time[0][-1] = all
+                        time[1][-1] = all
+                        for t in time:
+                            csv_writer.writerow(t)
+        df = pd.read_csv(f'1-{type}.csv')
+        df.sort_values(by=['size','num'], inplace=True)
+        df.reset_index(drop=True, inplace=True)
+        df.to_csv(f'1-{type}.csv', index=False, float_format='%.3f')

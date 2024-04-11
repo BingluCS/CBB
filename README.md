@@ -207,9 +207,12 @@ All evaluations are divided into 3 parts:
 - test3 for cache hit under three conditions.
 
 #### tes1
-###
+```
 cd $CBB_HOME/test
-. test1.sh nocom
-. test1.sh com
-. test1.sh cbb
+. test1.sh nocom 8 
+. test1.sh com 8
+. test1.sh cbb 8
+python3 process.py
+python3 draw_1.py
+```
 ###
