@@ -1,0 +1,162 @@
+BB size: 5 GB
+miss num: 75897, hit num : 4103, flush num: 75622
+cache git rate: 0.0512875
+miss num: 29658, hit num : 50342, flush num: 24748
+cache git rate: 0.629275
+miss num: 27178, hit num : 52822, flush num: 21591
+cache git rate: 0.660275
+miss num: 38410, hit num : 41590, flush num: 34851
+cache git rate: 0.519875
+BB size: 10 GB
+miss num: 71836, hit num : 8164, flush num: 71287
+cache git rate: 0.10205
+miss num: 16595, hit num : 63405, flush num: 6771
+cache git rate: 0.7925625
+miss num: 15065, hit num : 64935, flush num: 3861
+cache git rate: 0.8116875
+miss num: 21479, hit num : 58521, flush num: 14379
+cache git rate: 0.7315125
+BB size: 15 GB
+miss num: 67852, hit num : 12148, flush num: 67030
+cache git rate: 0.15185
+miss num: 12790, hit num : 67210, flush num: 0
+cache git rate: 0.840125
+miss num: 12630, hit num : 67370, flush num: 0
+cache git rate: 0.842125
+miss num: 16131, hit num : 63869, flush num: 5467
+cache git rate: 0.7983625
+BB size: 20 GB
+miss num: 64052, hit num : 15948, flush num: 62959
+cache git rate: 0.19935
+miss num: 12705, hit num : 67295, flush num: 0
+cache git rate: 0.8411875
+miss num: 12825, hit num : 67175, flush num: 0
+cache git rate: 0.8396875
+miss num: 12640, hit num : 67360, flush num: 0
+cache git rate: 0.842
+BB size: 25 GB
+miss num: 60708, hit num : 19292, flush num: 59349
+cache git rate: 0.24115
+miss num: 12660, hit num : 67340, flush num: 0
+cache git rate: 0.84175
+miss num: 12875, hit num : 67125, flush num: 0
+cache git rate: 0.8390625
+miss num: 12750, hit num : 67250, flush num: 0
+cache git rate: 0.840625
+BB size: 30 GB
+miss num: 57234, hit num : 22766, flush num: 55601
+cache git rate: 0.284575
+miss num: 12685, hit num : 67315, flush num: 0
+cache git rate: 0.8414375
+miss num: 12585, hit num : 67415, flush num: 0
+cache git rate: 0.8426875
+miss num: 12530, hit num : 67470, flush num: 0
+cache git rate: 0.843375
+BB size: 5 GB
+miss num: 75798, hit num : 4202, flush num: 75520
+cache git rate: 0.052525
+miss num: 29006, hit num : 50994, flush num: 24097
+cache git rate: 0.637425
+miss num: 25907, hit num : 54093, flush num: 20312
+cache git rate: 0.6761625
+miss num: 38178, hit num : 41822, flush num: 34634
+cache git rate: 0.522775
+BB size: 10 GB
+miss num: 71670, hit num : 8330, flush num: 71126
+cache git rate: 0.104125
+miss num: 16635, hit num : 63365, flush num: 6816
+cache git rate: 0.7920625
+miss num: 14715, hit num : 65285, flush num: 3506
+cache git rate: 0.8160625
+miss num: 21671, hit num : 58329, flush num: 14568
+cache git rate: 0.7291125
+BB size: 15 GB
+miss num: 67922, hit num : 12078, flush num: 67100
+cache git rate: 0.150975
+miss num: 12680, hit num : 67320, flush num: 0
+cache git rate: 0.8415
+miss num: 12795, hit num : 67205, flush num: 0
+cache git rate: 0.8400625
+miss num: 15775, hit num : 64225, flush num: 5113
+cache git rate: 0.8028125
+BB size: 20 GB
+miss num: 64245, hit num : 15755, flush num: 63152
+cache git rate: 0.1969375
+miss num: 12675, hit num : 67325, flush num: 0
+cache git rate: 0.8415625
+miss num: 12655, hit num : 67345, flush num: 0
+cache git rate: 0.8418125
+miss num: 12725, hit num : 67275, flush num: 0
+cache git rate: 0.8409375
+BB size: 25 GB
+miss num: 60333, hit num : 19667, flush num: 58966
+cache git rate: 0.2458375
+miss num: 12835, hit num : 67165, flush num: 0
+cache git rate: 0.8395625
+miss num: 12805, hit num : 67195, flush num: 0
+cache git rate: 0.8399375
+miss num: 12590, hit num : 67410, flush num: 0
+cache git rate: 0.842625
+BB size: 30 GB
+miss num: 57438, hit num : 22562, flush num: 55800
+cache git rate: 0.282025
+miss num: 12690, hit num : 67310, flush num: 0
+cache git rate: 0.841375
+miss num: 12690, hit num : 67310, flush num: 0
+cache git rate: 0.841375
+miss num: 12645, hit num : 67355, flush num: 0
+cache git rate: 0.8419375
+BB size: 5 GB
+miss num: 75709, hit num : 4291, flush num: 75431
+cache git rate: 0.0536375
+miss num: 29631, hit num : 50369, flush num: 24723
+cache git rate: 0.6296125
+miss num: 26728, hit num : 53272, flush num: 21124
+cache git rate: 0.6659
+miss num: 37809, hit num : 42191, flush num: 34262
+cache git rate: 0.5273875
+BB size: 10 GB
+miss num: 71889, hit num : 8111, flush num: 71340
+cache git rate: 0.1013875
+miss num: 16650, hit num : 63350, flush num: 6836
+cache git rate: 0.791875
+miss num: 14545, hit num : 65455, flush num: 3341
+cache git rate: 0.8181875
+miss num: 21786, hit num : 58214, flush num: 14691
+cache git rate: 0.727675
+BB size: 15 GB
+miss num: 68030, hit num : 11970, flush num: 67208
+cache git rate: 0.149625
+miss num: 12855, hit num : 67145, flush num: 0
+cache git rate: 0.8393125
+miss num: 12720, hit num : 67280, flush num: 0
+cache git rate: 0.841
+miss num: 15925, hit num : 64075, flush num: 5256
+cache git rate: 0.8009375
+BB size: 20 GB
+miss num: 63837, hit num : 16163, flush num: 62744
+cache git rate: 0.2020375
+miss num: 12720, hit num : 67280, flush num: 0
+cache git rate: 0.841
+miss num: 12740, hit num : 67260, flush num: 0
+cache git rate: 0.84075
+miss num: 12665, hit num : 67335, flush num: 0
+cache git rate: 0.8416875
+BB size: 25 GB
+miss num: 60398, hit num : 19602, flush num: 59034
+cache git rate: 0.245025
+miss num: 12555, hit num : 67445, flush num: 0
+cache git rate: 0.8430625
+miss num: 12755, hit num : 67245, flush num: 0
+cache git rate: 0.8405625
+miss num: 12610, hit num : 67390, flush num: 0
+cache git rate: 0.842375
+BB size: 30 GB
+miss num: 56428, hit num : 23572, flush num: 54790
+cache git rate: 0.29465
+miss num: 12640, hit num : 67360, flush num: 0
+cache git rate: 0.842
+miss num: 12715, hit num : 67285, flush num: 0
+cache git rate: 0.8410625
+miss num: 12815, hit num : 67185, flush num: 0
+cache git rate: 0.8398125

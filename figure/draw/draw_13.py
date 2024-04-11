@@ -73,4 +73,4 @@ plt.ylabel('Time (Second)', fontsize=20)
 plt.ylim(0)
 
 plt.gcf().set_size_inches(8,4.8) 
-plt.savefig("BB_running_time.pdf", bbox_inches='tight')
+plt.savefig("BB_running_time", bbox_inches='tight')

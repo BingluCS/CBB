@@ -1,15 +1,9 @@
-from d2l import torch as d2l
-from tqdm.auto import tqdm
-import h5py
 import torch
 import json
 from collections import deque
 import numpy as np
 import argparse
 
-
-BB = '/home/ubutnu/hardDisk/BB/wiki_book/'
-PFS = '/home/ubutnu/hardDisk/DeepLearning/wiki_book/'
 q=deque([])
 
 class Wiki_book_Dataset(torch.utils.data.Dataset):
@@ -64,7 +58,7 @@ def train( train_loader, learning_rate, num_steps,bb_size,data_size):
             if step == num_steps:
                 num_steps_reached = True
                 break
-    print(f'miss num: {miss_num}, hit num :{hit_num}, flush num: {flush_num}')
+    print(f'miss num: {miss_num}, hit num: {hit_num}, flush num: {flush_num}')
     print(f'cache git rate: {hit_num/(hit_num+miss_num)}')
 
 def main():

@@ -204,15 +204,31 @@ All evaluations are divided into 3 parts:
 
 - test1 for overall performance with different BB size under three conditions(no-compress BB, software compression BB and CBB).
 - test2 for CPU utilization under three conditions.
-- test3 for cache hit under three conditions.
+- test3 for cache hit rate under three conditions.
 
-#### tes1
+#### test1
 ```
 cd $CBB_HOME/test
 . test1.sh nocom 8 
 . test1.sh com 8
 . test1.sh cbb 8
-python3 process.py
-python3 draw_1.py
 ```
-###
+
+### test2
+
+```
+cd $CBB_HOME/test
+. test2.sh
+```
+
+### test3
+
+```
+cd $CBB_HOME/test
+. test3.sh
+```
+
+### figure
+```
+. draw.sh
+```
