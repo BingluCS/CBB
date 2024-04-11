@@ -231,7 +231,7 @@ cd $CBB_HOME/test
 . test3.sh
 ```
 
-Draw: After done, you can execute python scripts to draw the figure.
+draw: After done, you can execute python scripts to draw the figure.
 ```
 cd figure
 . draw.sh
