@@ -1,12 +1,12 @@
 import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
+
 dfno = pd.read_csv('../1-nocom.csv')
 dfcom = pd.read_csv('../1-com.csv')
 dfcbb = pd.read_csv('../1-cbb.csv')
 x1=np.arange(0,10,2)
 width = 0.5
-
 
 read_nocom = dfno.groupby(['size', 'app'])['read'].mean().reset_index()
 read_com = dfno.groupby(['size', 'app'])['read'].mean().reset_index()

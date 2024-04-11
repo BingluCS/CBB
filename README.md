@@ -16,45 +16,45 @@ please make sure your installation directory is in the SSD.
 ```
 . environment.sh
 ```
-### 1.2 Install dependent libraries and packages
+### 1.2 Install dependent libraries and packages (1 mins)
 ```
 sudo apt install libtool automake autoconf make m4 grads default-jre csh time
 . requirements.sh
 ```
-### 1.3 Load or install MPICH
+### 1.3 Load or install MPICH (7 mins)
 
 ```
 . mpi.sh
 ```
-### 1.4 Initial the BB config
+### 1.4 Initial the BB config (1 mins)
 ```
 cd DME
 . testBB-nocom.sh 
 . cJson.sh
 . BB.sh
 ```
-### 1.5 Download and install the HDF5 and netcdf library 
+### 1.5 Download and install the HDF5 and netcdf library  (5 mins)
 
 ```
 cd $CBB_HOME
 . hdf5.sh
 . netcdf.sh
 ```
-### 1.6 Intsall the SZ compressor
+### 1.6 Intsall the SZ compressor (2 mins)
 ```
 . compressor.sh
 ```
-### 1.7 Install the WRF with compress and no-compress mode
+### 1.7 Install the WRF with compress and no-compress mode (14 mins)
 
 ```
 . wrf.sh
 ```
-### 1.8 Install the Nyx with compress and no-compress mode
+### 1.8 Install the Nyx with compress and no-compress mode (4 mins)
 
 ```
 . nyx.sh
 ```
-### 1.9 Install the WarpX with compress and no-compress mode
+### 1.9 Install the WarpX with compress and no-compress mode (4 mins)
 
 ```
 . warpx.sh
@@ -206,7 +206,10 @@ All evaluations are divided into 3 parts:
 - test2 for CPU utilization under three conditions.
 - test3 for cache hit rate under three conditions.
 
-#### test1
+If your 
+
+tes1: overall performance for CBB (10 compute-hours)
+You can edit the script to reduce the number of loops, which will bring the time down to 3~4 compute-hours
 ```
 cd $CBB_HOME/test
 . test1.sh nocom 8 
@@ -214,21 +217,21 @@ cd $CBB_HOME/test
 . test1.sh cbb 8
 ```
 
-### test2
 
+test2: the CPU utilization of CBB (20 compute-minutes)
 ```
 cd $CBB_HOME/test
 . test2.sh
 ```
 
-### test3
-
+test3: cache hit rate evalution (10 compute-minutes)
 ```
 cd $CBB_HOME/test
 . test3.sh
 ```
 
-### figure
+Draw: After done, you can execute python scripts to draw the figure.
 ```
+cd figure
 . draw.sh
 ```

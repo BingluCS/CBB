@@ -2,7 +2,6 @@ import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
 
-# 读取CSV文件
 dfno = pd.read_csv('../1-nocom.csv')
 dfcom = pd.read_csv('../1-com.csv')
 dfcbb = pd.read_csv('../1-cbb.csv')
@@ -23,13 +22,13 @@ p1=plt.bar(x1+width+0.05, flusht_com, width, label="Compression",edgecolor='k',c
 p2=plt.bar(x1+width*2+0.1, flusht_cbb, width, label="CBB",edgecolor='k',color="#1E90FF")
 for i, value in zip(x1,flusht_nocom):
     if value == 0:
-        plt.text(i, value + 1, 'x', ha='center', va='bottom',fontsize=20,)  # 标记值为 0 的柱子，设置为红
+        plt.text(i, value + 1, 'x', ha='center', va='bottom',fontsize=20,) 
 for i, value in zip(x1+width*2+0.1,flusht_com):
     if value == 0:
-        plt.text(i, value + 1, 'x', ha='center', va='bottom',fontsize=20,)  # 标记值为 0 的柱子，设置为红色
+        plt.text(i, value + 1, 'x', ha='center', va='bottom',fontsize=20,)
 for i, value in zip(x1+width+0.05,flusht_cbb):
     if value == 0:
-        plt.text(i, value + 1, 'x', ha='center', va='bottom',fontsize=20,)  # 标记值为 0 的柱子，设置为红色
+        plt.text(i, value + 1, 'x', ha='center', va='bottom',fontsize=20,)
 
 a = plt.legend(p0, ['Baseline'],bbox_to_anchor=(-0.01, 1.01), loc=3, borderaxespad=0,frameon=False,fontsize=18,handletextpad=0.4)
 b = plt.legend(p1, ['Compression'],bbox_to_anchor=(0.75, 1.01),loc=4, borderaxespad=0,frameon=False,fontsize=18,handletextpad=0.4)

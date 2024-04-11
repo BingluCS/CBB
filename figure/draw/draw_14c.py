@@ -1,7 +1,7 @@
 import matplotlib.pyplot as plt
 import pandas as pd
 import numpy as np
-# 读取CSV文件
+
 dfno = pd.read_csv('../1-nocom.csv')
 dfcom = pd.read_csv('../1-com.csv')
 dfcbb = pd.read_csv('../1-cbb.csv')
