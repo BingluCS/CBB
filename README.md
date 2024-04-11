@@ -62,7 +62,7 @@ cd $CBB_HOME
 . warpx.sh
 ```
 
-## 2. test
+## 2. Test
 ### 2.1 Download the no-compress dateset 
 If necessary, you need to change the PFS directory to be on the HDD for simulating the real Parallel File System(PFS). 
 #### Download the no-compress dateset  
@@ -96,7 +96,7 @@ cp /your/install/chk00005 $CBB_HOME/run/BB/cbb
 cp /your/install/chk001000 $CBB_HOME/run/BB/cbb
 ```
 
-### 2.2 run application with no-compress format
+### 2.2 Run application with no-compress format
 #### Initial the BB with no-compress format
 ```
 cd $CBB_HOME/DME
@@ -104,7 +104,7 @@ cd $CBB_HOME/DME
 . BB.sh
 ```
 
-#### run wrf with no-compress format
+#### Run wrf with no-compress format
 ```
 cd $CBB_HOME/test
 . test-nocom.sh wrf
@@ -125,7 +125,7 @@ cd $CBB_HOME/out
 . analyse.sh nocom
 ```
 
-### 2.3 run application with software compress format
+### 2.3 Run application with software compress format
 #### Initial the BB with software compress format
 ```
 cd $CBB_HOME/DME
@@ -133,7 +133,7 @@ cd $CBB_HOME/DME
 . BB.sh
 ```
 
-#### run wrf with software compress format
+#### Run wrf with software compress format
 ```
 cd $CBB_HOME/test
 . test-com.sh wrf
@@ -154,7 +154,7 @@ cd $CBB_HOME/out
 . analyse.sh com
 ```
 
-### 2.4 run application with CBB
+### 2.4 Run application with CBB
 #### Simulate the CBB files
 Note: CBB is based on Real Computational Storage Drive(CSD). For this experiment, We offer some simualtion files of real applicaitons based on CSD compression and their metadata file in advance. If necessary, we support the manual creation of these files using the scripts we provide. If you have CSD cand can apply CSD to BB, you don't use scripts to simulate the CSD files. 
 
@@ -178,7 +178,7 @@ cd $CBB_HOME/DME
 . BB.sh
 ```
 
-#### run wrf with CBB
+#### Run wrf with CBB
 ```
 cd $CBB_HOME/test
 . test-cbb.sh wrf
@@ -193,13 +193,13 @@ cd $CBB_HOME/test
 cd $CBB_HOME/test
 . test-cbb.sh warpx
 ```
-#### Evaluation
+#### Data analysis
 ```
 cd $CBB_HOME/out
 . analyse.sh cbb
 ```
 
-## 3. the whole Evaluation
+## 3. The Experiment Evaluation about CBB
 All evaluations are divided into 3 parts:
 
 - test1 for overall performance with different BB size under three conditions(no-compress BB, software compression BB and CBB).
