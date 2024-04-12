@@ -66,10 +66,8 @@ cd $CBB_HOME
 . warpx.sh
 ```
 
-## 2. Test
-### 2.1 Download the no-compress dateset 
-If necessary, you need to change the PFS directory to be on the HDD for simulating the real Parallel File System(PFS). 
-#### Download the no-compress dateset  
+## 2. Download dataset and test
+#### Download the no-compress dateset of wrf
 ```
 cd $CBB_HOME/run/PFS/nocompress
 wget https://www2.mmm.ucar.edu/wrf/src/non_compressed_12km.tar.gz
@@ -80,7 +78,7 @@ cp wrfbdy_d01 $CBB_HOME/run/PFS/nocompress
 cp wrfinput_d01 $CBB_HOME/run/BB/cbb
 cp wrfbdy_d01 $CBB_HOME/run/BB/cbb
 ```
-#### Download the compress dateset  
+#### Download the compress dateset of wrf
 ```
 wget https://www2.mmm.ucar.edu/wrf/src/conus12km.tar.gz # The file is about 1.8GB including the output file
 tar xvf conus12km.tar.gz
@@ -89,8 +87,8 @@ cp wrfinput_d01 $CBB_HOME/run/PFS/compress
 cp wrfbdy_d01 $CBB_HOME/run/PFS/compress
 ```
 
-### Download the datasets of wrf and nyx
-For the datasets of wrf and nyx, we share them on Onedrive(https://hnueducn-my.sharepoint.com/:f:/g/personal/lbcs_hnu_edu_cn/EulfVRRn01VNoNwQ0QH6yA8BDJibuZymfsXo5DqIIKIg6A)
+### Download the datasets of warpx and nyx
+For the datasets of warpx and nyx, we share them on Onedrive(https://hnueducn-my.sharepoint.com/:f:/g/personal/lbcs_hnu_edu_cn/EulfVRRn01VNoNwQ0QH6yA8BDJibuZymfsXo5DqIIKIg6A)
 ```
 cp /your/install/chk00005 $CBB_HOME/run/PFS/nocompress
 cp /your/install/chk001000 $CBB_HOME/run/PFS/nocompress
