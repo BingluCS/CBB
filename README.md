@@ -121,7 +121,7 @@ cd $CBB_HOME/test
 cd $CBB_HOME/test
 . test-nocom.sh warpx
 ```
-#### Evaluation
+#### Data analysis
 ```
 cd $CBB_HOME/out
 . analyse.sh nocom
@@ -150,7 +150,7 @@ cd $CBB_HOME/test
 cd $CBB_HOME/test
 . test-com.sh warpx
 ```
-#### Evaluation
+#### Data analysis
 ```
 cd $CBB_HOME/out
 . analyse.sh com
