@@ -160,14 +160,14 @@ cd $CBB_HOME/out
 #### Simulate the CBB files
 Note: CBB is based on Real Computational Storage Drive(CSD). For this experiment, We offer some simualtion files of real applicaitons based on CSD compression and their metadata file in advance. If necessary, we support the manual creation of these files using the scripts we provide. If you have CSD cand can apply CSD to BB, you don't use scripts to simulate the CSD files. 
 
-Method 1: 
+#### Method 1: 
 ```
 cd   $CBB_HOME/run/
 tar xvf sim_bb.tar.gz
 cd sim_bb && cp * $CBB_HOME/run/PFS/cbb -r
 ```
 
-Method 2:
+#### Method 2:
 ```
 cd  $CBB_HOME/sim_bb
 git clone https://github.com/taovcu/DPZipSim.git
