@@ -46,7 +46,7 @@ cd $CBB_HOME
 . hdf5.sh
 . netcdf.sh
 ```
-### 1.6 Intsall the SZ compressor (2 mins)
+### 1.6 Install the SZ compressor (2 mins)
 ```
 . compressor.sh
 ```
