@@ -201,7 +201,7 @@ cd $CBB_HOME/out
 . analyse.sh cbb
 ```
 
-## 3. Experimental evaluation about CBB
+## 3. Experimental evaluation
 All evaluations are divided into 3 parts:
 
 - test1 for overall performance with different BB size under three conditions(no-compress BB, software compression BB and CBB).
