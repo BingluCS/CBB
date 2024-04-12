@@ -98,7 +98,7 @@ cp /your/install/chk00005 $CBB_HOME/run/BB/cbb
 cp /your/install/chk001000 $CBB_HOME/run/BB/cbb
 ```
 
-### 2.2 Run application with no-compress format
+### 2.2 Run applications with no-compress format
 #### Initial the BB with no-compress format
 ```
 cd $CBB_HOME/DME
@@ -127,7 +127,7 @@ cd $CBB_HOME/out
 . analyse.sh nocom
 ```
 
-### 2.3 Run application with software compress format
+### 2.3 Run applications with software compress format
 #### Initial the BB with software compress format
 ```
 cd $CBB_HOME/DME
@@ -156,7 +156,7 @@ cd $CBB_HOME/out
 . analyse.sh com
 ```
 
-### 2.4 Run application with CBB
+### 2.4 Run applications with CBB
 #### Simulate the CBB files
 Note: CBB is based on Real Computational Storage Drive(CSD). For this experiment, We offer some simualtion files of real applicaitons based on CSD compression and their metadata file in advance. If necessary, we support the manual creation of these files using the scripts we provide. If you have CSD cand can apply CSD to BB, you don't use scripts to simulate the CSD files. 
 
@@ -201,7 +201,7 @@ cd $CBB_HOME/out
 . analyse.sh cbb
 ```
 
-## 3. The Experiment Evaluation about CBB
+## 3. The experiment evaluation about CBB
 All evaluations are divided into 3 parts:
 
 - test1 for overall performance with different BB size under three conditions(no-compress BB, software compression BB and CBB).
